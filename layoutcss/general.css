@@ -1000,7 +1000,6 @@ header .social a.youtube_header:hover
   width: 320px;
   margin: 0 auto;
   left: 0;
-  border: 1px solid red;
   right: 0;
 }
 .child_today img
@@ -1035,7 +1034,6 @@ header .social a.youtube_header:hover
   height: auto;
   text-align: center;
   margin: 70px auto 0;
-  border: 1px solid red;
   font-size: 14px;
   line-height: 15px;
   display: block;
@@ -1045,9 +1043,57 @@ header .social a.youtube_header:hover
   width: 215px;
   height: auto;
   margin: 30px auto 0;
-  border: 1px solid red;
+  text-align: center;
 }
 
+.box_form_child_today form input.date2
+{
+  width: 60px;
+  height: 37px;
+  display: inline-block;
+  margin: 7px auto 0;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 33px;
+  border-bottom: 1px solid #ffffff;
+  text-align: center;
+}
+.box_form_child_today form input.date2.error
+{
+  border-bottom: 1px solid red;
+}
+.box_form_child_today form input.date2::-webkit-input-placeholder {
+  color: #263369;
+  text-align: center;
+  font-size: 33px;
+}
+.box_form_child_today form input.date2::-moz-placeholder {
+  color: #263369;
+  text-align: center;
+  font-size: 33px;
+}
+.box_form_child_today form input.date2:-moz-placeholder {
+  color: #263369;
+  text-align: center;
+  font-size: 33px;
+}
+.box_form_child_today form input.date2:-ms-input-placeholder {
+  color: #263369;
+  text-align: center;
+  font-size: 33px;
+}
+.box_form_child_today form input.next_button
+{
+  width:160px;
+  height: 47px;
+  background: url(../assets/button_create.png) no-repeat;
+  border-bottom: none;
+  border: none;
+  margin: 40px 0 0;
+  color: #fff;
+  font-size: 18px;
+}
 
 
 
