@@ -998,7 +998,43 @@ header .social a.youtube_header:hover
   display: block;
   margin: 0 auto;
 }
-
+.child_today p
+{
+  font-size: 24px;
+  text-align: center;
+  margin-top: 15px;
+}
+.box_form_child_today
+{
+  width: 332px;
+  height: 332px;
+  background: url(../assets/ring_big.png);
+  margin: 70px 0 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.box_form_child_today p
+{
+  width: 215px;
+  height: auto;
+  text-align: center;
+  margin: 70px auto 0;
+  border: 1px solid red;
+  font-size: 14px;
+  line-height: 15px;
+  display: block;
+}
+.box_form_child_today form
+{
+  width: 215px;
+  height: auto;
+  margin: 30px auto 0;
+  border: 1px solid red;
+}
 
 
 
