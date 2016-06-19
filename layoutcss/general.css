@@ -1112,8 +1112,32 @@ header .social a.youtube_header:hover
   color: #fff;
   font-size: 18px;
 }
-
-
+.child_today.text_galaxy
+{
+  width: 100%;
+  max-width: 850px;
+}
+.child_today.text_galaxy .text_space
+{
+  line-height: 20px;
+  font-size: 19px;
+  color: #6a98cf;
+  display: block;
+  margin: 70px 0 75px;
+}
+.child_today.text_galaxy .contact_us
+{
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  line-height: 52px;
+  text-decoration: none;
+  width: 164px;
+  height: 166px;
+  background: url(../assets/contact_us.png);
+}
 
 
 
