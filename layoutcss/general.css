@@ -1138,8 +1138,18 @@ header .social a.youtube_header:hover
   height: 166px;
   background: url(../assets/contact_us.png);
 }
-
-
+.child_today.app_galaxy
+{
+  width: 100%;
+  max-width: 1109px;
+}
+.child_today.app_galaxy img.app
+{
+  width: 100%;
+  height: auto;
+  margin: 50px auto 0;
+  text-align: center;
+}
 
 
 
