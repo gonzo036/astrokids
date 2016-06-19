@@ -1002,6 +1002,7 @@ header .social a.youtube_header:hover
   left: 0;
   right: 0;
 }
+
 .child_today img
 {
   width: 59px;
@@ -1015,6 +1016,7 @@ header .social a.youtube_header:hover
   text-align: center;
   margin-top: 15px;
 }
+
 .box_form_child_today
 {
   width: 332px;
@@ -1027,6 +1029,22 @@ header .social a.youtube_header:hover
   position: relative;
   display: block;
   overflow: hidden;
+}
+.box_form_child_today .ball
+{
+  width: 23px;
+  height: 23px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: #00fff2;
+  position: absolute;
+  right: 39px;
+  top: 52px;
+  color: #184351;
+  line-height: 23px;
+  box-shadow: 0px 0px 26px #00fff2;
+  text-align: center;
 }
 .box_form_child_today p
 {
@@ -1173,6 +1191,9 @@ footer
   width: 100%;
   background: url(../assets/bg_footer.png);
   height: 25px;
+<
+  div class="child_today" style="display: none;">         <img src="assets/item_3_big.png" alt="">         <p>Lorem ipsum dolor sit amet</p>         <div class="box_form_child_today">             <div class="ball"></div>             <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do et dolore magna aliqua:</p>             <form action="">                 <input type="text" placeholder="DD" class="date2">                 <input type="text" placeholder="MM" class="date2">                 <input type="text" placeholder="YY" class="date2">                 <input type="submit" class="next_button" value="EXPLORE">             </form>         </div>     </div>;
+  border-top: solid 1px #00fff2;
 }
 footer .copyright,
 footer .powerby
