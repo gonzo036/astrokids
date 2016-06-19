@@ -76,7 +76,29 @@ $(document).ready(function() {
       }
 
   });
-  // controls left
+  // end controls left
+
+  // controls right
+  var top_zodiac = 0;
+   $('.control_up').click(function() {
+      top_zodiac = top_zodiac+88;
+      if(top_zodiac>=0)top_zodiac=0;
+      $('.zodiac_sings').animate({'margin-top': top_zodiac}, 400);
+   });
+   $('.control_down').click(function() {
+
+      top_zodiac = top_zodiac-88;
+      if(top_zodiac<=-704)top_zodiac=-704;
+      $('.zodiac_sings').animate({'margin-top': top_zodiac}, 400);
+      
+   });
+
+   //Animation preload
+   $('#text_p').animate({'margin-top': '-121'}, 400);
+
+
+
+
   
   
 

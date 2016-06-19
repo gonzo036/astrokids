@@ -225,6 +225,7 @@ var AstroKids = function() {
 
     this.completePreload = function() {
         $('#carga_t').text('Universe Loaded!');
+        $('#text_p').animate({'margin-top': '100'}, 400);
         $('#start').click(function(){
             document.getElementById("loader").style.display = "none";
             document.getElementById("fondo_preload").style.display = "none";
