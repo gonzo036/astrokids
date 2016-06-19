@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- keywords -->
+    <meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<!-- title -->
+    <title>base</title>
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="layoutcss/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="layoutcss/general.css"/>
+    <link rel="stylesheet" type="text/css" href="layoutcss/fonts.css"/>
+    <!-- Styles -->
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/easing/EasePack.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js"></script>
+    <script src="js/general.js"></script>
+    <script src="js/gui.js"></script>
+</head>
+<body>
+
+    <div class="bg_mov">
+        
+    </div>
+
+	<header>
+        <div class="controls_header">
+            <div class="sound"></div>
+            <div class="screen_control"></div>
+        </div>
+        <div class="logo">
+            <img src="assets/logo_1.png" alt="" id="logo_1">
+            <img src="assets/logo_2.png" alt="" id="logo_2" style="display:none;">
+        </div>
+        <div class="social">
+            <a href="" class="facebook_header"></a>
+            <a href="" class="twitter_header"></a>
+            <a href="" class="youtube_header"></a>
+        </div>   
+    </header>
+
+    <div class="controls_left">
+        <ul class="controls">
+            <li>
+                <div class="sign_control"></div>
+                <a href="">
+                    <span>Adelante</span>
+                </a>
+            </li>
+            <li>
+                <div class="sign_control"></div>
+                <a href="">
+                    <span>Atras</span>
+                </a>
+            </li>
+            <li>
+                <div class="sign_control"></div>
+                <a href="">
+                    <span>Menos</span>
+                </a>
+            </li>
+            <li>
+                <div class="sign_control"></div>
+                <a href="">
+                    <span>Mas</span>
+                </a>
+            </li>
+        </ul>
+        <a href="javascript:void(0);" class="open_control">
+            <div class="sign_control"></div>
+            <span>NAVIGATION</span>
+        </a>
+    </div>
+
+    <div class="controls_right">
+        <div class="zodiac_button" style="display:none;"></div>
+        <div class="control_up">
+            <div class="control"></div>
+        </div>
+        <div class="content_zodiac_sings">
+            <ul class="zodiac_sings">
+                <li class="">
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li class="">
+                    <span>TAURO</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+                <li>
+                    <span>ARIES</span>
+                    <img src="assets/mini_tauro.png" alt="" class="min_sign">
+                    <div class="month_1">
+                        <span>01</span>
+                        <span>ABR</span>
+                    </div>
+                    <div class="month_2">
+                        <span>20</span>
+                        <span>MAY</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="control_down">
+            <div class="control"></div>
+        </div>
+    </div>
+    
+
+
+    <div class="name_star" style="display:none;">
+        <img src="assets/star.png" alt="">
+        <p class="name">Andres Sar</p>
+        <p class="sign">Sagitario</p>
+    </div>
+
+
+
+
+    <div class="constelaciones" style="display:none;">
+        <img src="assets/constelacion1.png" alt="">
+        <div class="text_constelaciones">
+            <p>Sagittarius constellation</p>
+            <span>November 23 / December 21</span>
+            <div class="sing_generic"><img src="assets/sing_generic.png" alt=""></div>
+            <div class="sing_generic right"><img src="assets/sing_generic.png" alt=""></div>
+        </div>
+    </div>
+
+
+
+
+    <div class="tutorial" style="display:none;">
+        <div class="box_steps"><!-- agregar clase cada vez en cada tutorial activate-->
+            <div class="number_tutorial">1</div>
+            <img src="assets/tutorial1.png" alt="">
+            <p>Guide your way around by simply moving</p>
+        </div>
+        <div class="box_steps ">
+            <div class="number_tutorial">2</div>
+            <img src="assets/tutorial2.png" alt="">
+            <p>Click on any empty space inside the sign costellation.</p>
+        </div>
+        <div class="box_steps ">
+            <div class="number_tutorial">3</div>
+            <img src="assets/tutorial3.png" alt="">
+            <p>Share your sons star with your family an friends.</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="form_name " style="display:none;"><!-- big_1 para formulario de datos osea #form2-->
+        <form action="">
+
+            <div id="form1" style="display:block;">
+                <img src="assets/img_form_top.png" alt="">
+                <label for="">Your son name</label>
+                <input type=""/>
+                <label class="genr" for="">Your sons genre:</label>
+                <div class="box_gen">
+                    <label for="">
+                        <div class="radio_male">
+                            <input type="radio" id="radio1" name="radio" checked />
+                            <label for="radio1"><span><img src="assets/genr1.png" alt=""></span></label>
+                        </div> 
+                        <div class="radio_female">
+                            <input type="radio" id="radio02" name="radio"  />
+                            <label for="radio02"><span><img src="assets/genr2.png" alt=""></span></label>
+                        </div>                    
+                    </label>
+                </div>
+                <input type="submit" class="create_conts" value="CREATE star">
+            </div>
+
+            <div id="form2" style="display:none;">
+                <img src="assets/logo_1.png" class="logo" alt="">
+                <p>The Universe has the power itself of creating life. Now the power is yours! you can create a star, your sons star.</p>
+                <span class="date_birth">
+                    Date birth of your son:
+                </span>
+                <input type="text" placeholder="DD" class="date">
+                <input type="text" placeholder="MM" class="date">
+                <input type="text" placeholder="YYYY" class="date">
+                <input type="submit" class="create_conts explore" value="EXPLORE">
+            </div>
+
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer>
+        <div class="copyright">
+            copyright 2016 el universodelosniños.com
+        </div>
+        <div class="menu_close" style="display:block;"></div>
+        <ul class="menu_open" style="display:none;">
+            <li class="item_1 ">
+                <a href="javascript:void(0);">
+                    MY SPACE
+                </a>
+            </li>
+            <li class="item_2">
+                <a href="javascript:void(0);">
+                    ABOUT US
+                </a>
+            </li>
+            <li class="item_3">
+                <a href="javascript:void(0);">
+                    CHOLDREN TODAY
+                </a>  
+            </li>
+            <li class="item_4">
+                <a href="javascript:void(0);">
+                    STORE
+                </a>
+            </li>
+            <li class="item_5">
+                <a href="javascript:void(0);">
+                    APP SPACE
+                </a>
+            </li>
+            <div class="circle_menu_open">
+                <img src="assets/galaxy_test.png" alt="">
+            </div>
+        </ul>
+        <div class="powerby">
+            Poweres by 360 PIXEL HOUSE
+        </div>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,1058 @@
+@charset "utf-8";
+@import url("reset.css");
+/* CSS Document */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html, body {
+  background: #000;
+  height: 100%;
+  width: 100%;
+  font-family: Helvetica, sans-serif;
+  color: #fff;
+}
+body 
+{
+  font-family: Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: block;
+  margin:0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition:all 0.5s ease-out;
+  overflow: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  background: url(../assets/bg_test.png);
+  background-size: cover;
+}
+.bg_mov
+{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+header 
+{
+  width: 96%;
+  padding: 0 2%;
+  margin: 25px auto 0;
+  position: relative;
+  height: auto;
+}
+header .controls_header
+{
+  width: 90px;
+  position: absolute;
+  left: 0;
+  height: 35px;
+}
+header .controls_header .sound,
+header .controls_header .screen_control
+{
+  width: 35px;
+  height: 35px;
+  float: left;
+  overflow: auto;
+  background: url(../assets/controls_left.png);
+}
+header .controls_header .screen_control
+{
+  float: right;
+  background-position: -37px 0px;
+}
+header .controls_header .sound:hover,
+header .controls_header .screen_control:hover
+{
+  background: url(../assets/controls_left_hover.png);
+  background-position: -9px -9px;
+  box-shadow: 0px 0px 26px #00fff2;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+header .controls_header .screen_control:hover
+{
+  background-position: -64px -9px;
+}
+
+header .logo
+{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: block;
+  width: 130px;
+  text-align: center;
+}
+
+header .social
+{
+  width: 145px;
+  height: 35px;
+  position: absolute;
+  right: 0;
+  display: block;
+  text-align: center;
+}
+header .social a
+{
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  overflow: auto;
+  background: url(../assets/social.png);
+}
+header .social a.twitter_header
+{
+  background-position: -36px 0px;
+  margin: 0 15px;
+}
+header .social a.youtube_header
+{
+  background-position: -72px 0px;
+}
+header .social a:hover
+{
+  background: url(../assets/social_hover.png);
+}
+header .social a.twitter_header:hover
+{
+  background-position: -36px 0px;
+}
+header .social a.youtube_header:hover
+{
+  background-position: -72px 0px;
+}
+
+
+.controls_left
+{
+  width: 40px;
+  height: 260px;
+  position: absolute;
+  left: 2%;
+  bottom: 40px;
+}
+.controls_left .controls li,
+.controls_left .open_control
+{
+  width: 40px;
+  height: 40px;
+  margin: 0 0 15px;
+}
+.controls_left .controls li
+{
+  margin-left: -100px;
+}
+.controls_left .open_control
+{
+  position: absolute;
+  bottom: 0px;
+}
+.controls_left .controls li a,
+.controls_left a.open_control
+{
+  width: 40px;
+  height: 40px;
+  display: block;
+  text-decoration: none;
+  background: url(../assets/rings.png) no-repeat;
+  box-shadow: 0px 0px 26px #00fff2;
+  -webkit-border-radius: 24px;
+  -moz-border-radius: 24px;
+  border-radius: 24px;
+  position: relative;
+  z-index: 10;
+}
+.controls_left .controls li a:hover,
+.controls_left a.open_control:hover
+{
+  background-position: 0px -42px;
+  box-shadow: 0px 0px 26px #cc0073;
+}
+.controls_left .controls li a span,
+.controls_left a.open_control span
+{
+  display: none;
+  position: absolute;
+  left: 55px;
+  color: #f8e649;
+  font-size: 20px;
+  margin-top: 17px;
+}
+.controls_left .controls li a:hover span,
+.controls_left a.open_control:hover span
+{
+  display: block;
+}
+.controls_left .controls li .sign_control,
+.controls_left a.open_control .sign_control
+{
+  background: url(../assets/controls.png) no-repeat;
+  width: 40px;
+  position: absolute;
+  height: 40px;
+  z-index: 0;
+  background-position: center 14px;
+}
+.controls_left .controls li:nth-child(2) .sign_control
+{
+  background-position: center -25px;
+}
+.controls_left .controls li:nth-child(3) .sign_control
+{
+  background-position: center -66px;
+}
+.controls_left .controls li:nth-child(4) .sign_control
+{
+  background-position: center -108px;
+}
+.controls_left a.open_control .sign_control
+{
+  background-position: 6px -149px;
+}
+.controls_left a.open_control.active
+{
+  background-position: 0px -42px;
+  box-shadow: 0px 0px 26px #cc0073;
+}
+.controls_left a.open_control.active span
+{
+  display: block;
+}
+
+
+.controls_right
+{
+  position: absolute;
+  right: 2%;
+  top: 25%;
+  width: 96px;
+  height: 460px;
+}
+.controls_right .zodiac_button
+{
+  width: 96px;
+  height: 96px;
+  position: absolute;
+  top: calc(50% - 48px);
+  cursor: pointer;
+  background: url(../assets/zodiac_button.png);
+}
+.controls_right .control_up,
+.controls_right .control_down
+{
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 17.5px);
+  -webkit-border-radius: 17.5px;
+  -moz-border-radius: 17.5px;
+  border-radius: 17.5px;
+  background: #034d5b;
+}
+.controls_right .control_up .control,
+.controls_right .control_down .control
+{
+  width: 13px;
+  height: 14px;
+  margin: 11px auto 0;
+  background: url(../assets/controls_zodiac.png);
+}
+.controls_right .control_down .control
+{
+  background-position: 0px -14px;
+}
+.controls_right .control_up:hover,
+.controls_right .control_down:hover
+{
+  background: #00fff2;
+}
+.controls_right .control_up:hover .control
+{
+  background-position: -13px 0px;
+}
+.controls_right .control_down:hover .control
+{
+  background-position: -13px -14px;
+}
+
+.controls_right .control_down
+{
+  top: initial;
+  bottom: 0;
+}
+.controls_right .content_zodiac_sings
+{
+  height: 352px;
+  width: 96px;
+  margin-top: 55px;
+  overflow: hidden;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li
+{
+  width: 63px;
+  height: 63px;
+  border: 2px solid #034e5c;
+  margin: 0 auto;
+  -webkit-border-radius: 31.5px;
+  -moz-border-radius: 31.5px;
+  border-radius: 31.5px;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 25px;
+  cursor: pointer;
+  position: relative;
+  transition:all 0.5s ease-out;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  -webkit-border-radius: 1.5px;
+  -moz-border-radius: 1.5px;
+  border-radius: 1.5px;
+  background: #00fff2;
+  bottom: -15px;
+  left: 0px;
+  margin: 0 auto;
+  right: 0px;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li span
+{
+  line-height: 63px;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li .min_sign
+{
+  display: none;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li.active
+{
+  border: 2px solid #c90072;
+  width: 83px;
+  height: 83px;
+  -webkit-border-radius: 41.5px;
+  -moz-border-radius: 41.5px;
+  border-radius: 41.5px;
+  box-shadow: 0px 0px 20px #c90072;
+  transition:all 0.5s ease-out;
+}
+
+.controls_right .content_zodiac_sings .zodiac_sings li .month_1,
+.controls_right .content_zodiac_sings .zodiac_sings li .month_2
+{
+  display: none;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li .month_1 span,
+.controls_right .content_zodiac_sings .zodiac_sings li .month_2 span
+{
+  display: none;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li .month_1 span:nth-child(2),
+.controls_right .content_zodiac_sings .zodiac_sings li .month_2 span:nth-child(2) 
+{
+  display: none;
+}
+
+.controls_right .content_zodiac_sings .zodiac_sings li.active span
+{
+  font-size: 16px;
+  color: #00fff2;
+  display: block;
+  height: 51px;
+  line-height: 66px;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li.active .min_sign
+{
+  position: absolute;
+  top: 10%;
+  display: block;
+  left: 83%;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li.active .month_1,
+.controls_right .content_zodiac_sings .zodiac_sings li.active .month_2
+{
+  width: 17px;
+  height: 20px;
+  display: inline-block;
+  margin-top: -20px;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li.active .month_1 span,
+.controls_right .content_zodiac_sings .zodiac_sings li.active .month_2 span
+{
+  display: inline-block;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  line-height: 100%;
+  height: auto;
+}
+.controls_right .content_zodiac_sings .zodiac_sings li.active .month_1 span:nth-child(2),
+.controls_right .content_zodiac_sings .zodiac_sings li.active .month_2 span:nth-child(2) 
+{
+  font-size: 8px;
+  margin-top: 1px;
+  display: block;
+  height: auto;
+}
+
+
+
+.form_name,
+.form_name.big_1
+{
+  width: 255px;
+  height: 323px;
+  margin: 0 auto;
+  position: absolute;
+  top: calc(50% - 127.5px);
+  left: calc(50% - 120px);
+  overflow: hidden;
+}
+.form_name.big_1
+{
+  height: 422px;
+  top: calc(50% - 220px);
+  text-align: center;
+}
+.form_name img,
+.form_name img.logo
+{
+  width: 63px;
+  height: 63px;
+  margin: 0 auto 25px;
+  display: block;
+}
+.form_name img.logo
+{
+  width: 147px;
+  height: auto;
+}
+.form_name form label
+{
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  margin: 0 auto 15px;
+  width: 100%;
+}
+.form_name form label.genr
+{
+  margin: 30px auto 25px;
+}
+.form_name form input
+{
+  height: 32px;
+  width: 165px;
+  display: block;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  border-bottom: 1px solid #ffffff;
+}
+.form_name form input.error,
+.form_name form input.date.error
+{
+  border-bottom: 1px solid red;
+}
+.form_name form div.radio_male, .form_name form div.radio_female {
+  margin: 0 15px 0;
+  display: inline-block;
+}
+.form_name form div.radio_male input[type="radio"] + label span:before
+{
+  content: "MALE";
+  color: #fff;
+  position: absolute;
+  height: 14px;
+  bottom: 85px;
+  left: 18px;
+  margin: 0 auto;
+  display: none;
+}
+.form_name form div.radio_female input[type="radio"] + label span:after
+{
+  content: "FEMALE";
+  color: #fff;
+  position: absolute;
+  width: 56px;
+  height: 14px;
+  bottom: 85px;
+  right: 7px;
+  margin: 0 auto;
+  display: none;
+}
+.form_name form div.radio_male:hover input[type="radio"] + label span:before,
+.form_name form div.radio_male input[type="radio"]:checked + label span:before,
+.form_name form div.radio_female:hover input[type="radio"] + label span:after,
+.form_name form div.radio_female input[type="radio"]:checked + label span:after
+{
+  display: block;
+}
+.form_name form div.radio_male:after
+{
+  content: "or";
+  color: #fff;
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  bottom: 86px;
+  left: 118px;
+  margin: 0 auto;
+}
+.form_name form div.radio_male label span
+{
+  display: block;
+  text-align: center;
+}
+.form_name form div.radio_male label span img
+{
+  width: 14px;
+  height: auto;
+  margin: 7px 0;
+  display: inline-block;
+}
+.form_name form div.radio_female label span img
+{
+  width: 17px;
+  height: auto;
+  margin: 9px 0;
+  display: inline-block;
+}
+.form_name form div.radio_male input[type="radio"],
+.form_name form div.radio_female input[type="radio"] {
+  display: none;
+}
+
+.form_name form div.radio_male input[type="radio"] + label,
+.form_name form div.radio_female input[type="radio"] + label {
+  color: #292321;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.form_name form div.radio_male input[type="radio"] + label span,
+.form_name form div.radio_female input[type="radio"] + label span {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.form_name form div.radio_male input[type="radio"] + label span,
+.form_name form div.radio_female input[type="radio"] + label span {
+  background: url(../assets/rings.png) no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 26px #00fff2;
+}
+.form_name form div.radio_male input[type="radio"]:checked + label span,
+.form_name form div.radio_female input[type="radio"]:checked + label span {
+ background: url(../assets/rings.png) no-repeat;
+ background-size: cover;
+ background-position: 0px -36px;
+ box-shadow: 0px 0px 26px #cc0073;
+
+}
+
+.form_name form input.create_conts
+{
+  width:160px;
+  height: 47px;
+  background: url(../assets/button_create.png) no-repeat;
+  border-bottom: none;
+}
+
+
+#form2 p, #form2 .date_birth
+{
+  font-size: 14px;
+  display: block;
+  text-align: center;
+  line-height: 14px;
+}
+#form2 .date_birth
+{
+  margin: 20px auto 10px;
+}
+.form_name form input.date
+{
+  width: 40px;
+  display: inline-block;
+}
+
+.form_name form input.date::-webkit-input-placeholder {
+  color: #40456a;
+  text-align: center;
+  font-size: 15px;
+}
+.form_name form input.date::-moz-placeholder {
+  color: #40456a;
+  text-align: center;
+  font-size: 15px;
+}
+.form_name form input.date:-moz-placeholder {
+  color: #40456a;
+  text-align: center;
+  font-size: 15px;
+}
+.form_name form input.date:-ms-input-placeholder {
+  color: #40456a;
+  text-align: center;
+  font-size: 15px;
+}
+.form_name form input.create_conts.explore
+{
+  margin:40px auto ;
+}
+
+
+.tutorial
+{
+  width: 580px;
+  height: 220px;
+  position: absolute;
+  top: calc(50% - 110px);
+  left: calc(50% - 290px);
+  display: block;
+  text-align: center;
+}
+.tutorial .box_steps
+{
+  width: 156px;
+  height: 220px;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+}
+
+.tutorial .box_steps img
+{
+  width: 100%;
+  height: auto;
+  border: 2px solid #004356;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: top;
+}
+.tutorial .box_steps:nth-child(2)
+{
+  margin: 0 51px;
+}
+.tutorial .box_steps .number_tutorial
+{
+  width: 23px;
+  height: 23px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: #00fff2;
+  position: absolute;
+  top: 9%;
+  right: 2%;
+  color: #184351;
+  line-height: 23px;
+  text-align: center;
+  display: none;
+}
+.tutorial .box_steps p
+{
+  margin-top: 30px;
+  font-size: 13px;
+  display: none;
+}
+.tutorial .box_steps:hover p,
+.tutorial .box_steps.activate p
+{
+  display: block;
+}
+.tutorial .box_steps.activate img,
+.tutorial .box_steps:hover img
+{
+  border: 2px solid #00fff2;
+  box-shadow: 0px 0px 26px #00fff2;
+}
+.tutorial .box_steps.activate .number_tutorial,
+.tutorial .box_steps:hover .number_tutorial
+{
+  display: block;
+}
+
+
+
+.constelaciones
+{
+  width: 382px;
+  height: 366px;
+  position: absolute;
+  top: calc(50% - 191px);
+  left: calc(50% - 183px);
+  display: block;
+  text-align: center;
+}
+.constelaciones img
+{
+  width: 90%;
+  height: auto;
+  margin-bottom: 55px;
+}
+.constelaciones .text_constelaciones
+{
+  position: relative;
+  width: 100%;
+}
+.constelaciones p,
+.constelaciones span
+{
+  width: 280px;
+  font-size: 22px;
+  display: block;
+  height: auto;
+  margin: 0 auto;
+}
+.constelaciones span
+{
+  font-size: 14px;
+  color: #f8e649;
+  margin-top: 10px;
+}
+.constelaciones .sing_generic
+{
+  width: 50px;
+  height: 50px;
+  background: url(../assets/rings.png) no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 26px #00fff2;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  text-align: center;
+}
+.constelaciones .sing_generic.right
+{
+  right: 0;
+  left: initial;
+}
+.constelaciones .sing_generic img
+{
+  width: 17px;
+  height: 17px;
+  display: inline-block;
+  margin: 16px 0 0;
+}
+
+
+
+.name_star
+{
+  width: 170px;
+  height: 46px;
+  position: absolute;
+  top: calc(50% - 23px);
+  left: calc(50% - 71px);
+  display: block;
+  text-align: center;
+}
+.name_star img
+{
+  width: 44px;
+  height: 44px;
+  float: left;
+}
+.name_star p
+{
+  width: auto;
+  display: block;
+  padding:7px 5px 0 5px;
+  font-size: 14px;
+  text-align: left;
+  float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer
+{
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background: url(../assets/bg_footer.png);
+  height: 25px;
+}
+footer .copyright,
+footer .powerby
+{
+  font-size: 10px;
+  position: absolute;
+  left: 2%;
+  line-height: 25px;
+}
+footer .powerby
+{
+  right: 2%;
+  left: initial;
+}
+footer .menu_close
+{
+  background: url(../assets/menu_footer.png) no-repeat;
+  width: 180px;
+  height: 69px; 
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+footer .menu_open {
+  display: block;
+  position: absolute;
+  left: 0;
+  margin: 0 auto;
+  right: 0;
+  width: 593px;
+  height: 57px;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: bottom;
+  bottom: -100%;
+  background: url(../assets/bg_menu_footer.png) no-repeat top center;
+}
+footer .menu_open li
+{
+  display: block;
+  margin: 40px 0px 0 -19px;
+  position: relative;
+  vertical-align: baseline;
+  float: left;
+}
+footer .menu_open li:nth-child(1):after
+{
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  -webkit-border-radius: 1.5px;
+  -moz-border-radius: 1.5px;
+  border-radius: 6.5px;
+  bottom: 37px;
+  left: 39%;
+  border: 2px solid #0cf7f0;
+  margin: 0 auto;
+}
+footer .menu_open li:nth-child(2)
+{
+  margin: 40px 0px 0 93px;
+}
+footer .menu_open li:nth-child(2):after
+{
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  -webkit-border-radius: 1.5px;
+  -moz-border-radius: 1.5px;
+  border-radius: 6.5px;
+  bottom: 37px;
+  left: 8%;
+  border: 2px solid #0cf7f0;
+  margin: 0 auto;
+  right: 0px;
+}
+footer .menu_open li:nth-child(3)
+{
+  margin: 40px 0px 0 84px;
+}
+footer .menu_open li:nth-child(3):after
+{
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  -webkit-border-radius: 1.5px;
+  -moz-border-radius: 1.5px;
+  border-radius: 6.5px;
+  bottom: 37px;
+  left: 33%;
+  border: 2px solid #0cf7f0;
+  margin: 0 auto;
+}
+
+footer .menu_open li:nth-child(4)
+{
+  margin: 40px 0px 0 73px;
+}
+footer .menu_open li:nth-child(4):after
+{
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  -webkit-border-radius: 1.5px;
+  -moz-border-radius: 1.5px;
+  border-radius: 6.5px;
+  bottom: 37px;
+  left: 30%;
+  border: 2px solid #0cf7f0;
+  margin: 0 auto;
+}
+footer .menu_open li:nth-child(5)
+{
+  margin: 40px -20px 0 0px;
+  float: right;
+}
+footer .menu_open li:nth-child(5):after
+{
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 14px;
+  -webkit-border-radius: 1.5px;
+  -moz-border-radius: 1.5px;
+  border-radius: 6.5px;
+  bottom: 37px;
+  left: 41%;
+  border: 2px solid #0cf7f0;
+  margin: 0 auto;
+}
+footer .menu_open li a
+{
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
+}
+footer .menu_open .circle_menu_open
+{
+  width: 70px;
+  height: 105px;
+  position: absolute;
+  top: -56px;
+  left: -4.855555555555%;
+  display: none;
+  right: 0;
+}
+footer .menu_open .circle_menu_open img
+{
+  width: 100%;
+}
+footer .menu_open li.active a
+{
+  color: #f8e649;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

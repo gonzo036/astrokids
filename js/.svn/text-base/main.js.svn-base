@@ -1,0 +1,276 @@
+(function() {
+
+    var deviceValidate = !(typeof window._IElet6 != "undefined" && window._IElet6);
+
+    if (!deviceValidate) {
+        document.location.replace('b_alert.php');
+        return false;
+    }
+
+    window._IE7 = window._IElet7 && !window._IElet6;
+    window._DasValidDevice = false;
+
+
+    var _FBAppId = window._DasFBAppId;
+    var _FBChannelUrl = window._DasFBChannelUrl;
+
+    var _v = (typeof window._DasPV != "undefined") ? window._DasPV : '1';
+
+    if(!/^[0-9]+$/.test(_v))
+	_v = '1';
+
+    require({
+        baseUrl: 'app_lib/js/das'
+    }, ['das'], function(das) {
+
+        var depsList = [
+            {
+                'src': {
+                    'modernizr': 'app_lib/js/utils/modernizr.min.js',
+                    'defer': 'app_lib/js/utils/defer.min.js'
+                }
+            },
+            {
+                'name': 'detectizr',
+                'src': {
+                    'detectizr-js': 'app_lib/js/utils/detectizr.min.js'
+                },
+                'deps': ['modernizr'],
+                'complete': function() {
+                    Modernizr.Detectizr.detect({
+                        'detectDevice': true,
+                        'detectDeviceModel': false,
+                        'detectScreen': false,
+                        'detectOS': false,
+                        'detectBrowser': false,
+                        'detectPlugins': false
+                    });
+                }
+            },
+            {
+                'name': 'device-validation',
+                'src': function() {
+
+                    var hasMq = Modernizr.mq('only all');
+
+                    window._DasValidDevice = true;
+                    window._DasIsMobileDevice = Modernizr.Detectizr.device.type === "mobile";
+                    window._DasAreCookiesEnabled = das.Utils.areCookiesEnabled();
+
+                    var mainLoading = document.getElementById('main-loading');
+                    var mainContainer = document.getElementById('main-container');
+
+                    if (mainLoading === null || mainContainer === null) {
+                        document.location.replace('b_alert.php');
+                        return false;
+                    }
+
+                    if (window._DasIsMobileDevice) {
+			var classExtra = "mobile" + ( hasMq ? "" : " nmq");
+			mainContainer.className = (mainContainer.className.length > 0 ? mainContainer.className + " " : "") + classExtra;
+                    }
+
+                    mainLoading.style.display = 'none';
+                    mainContainer.style.display = 'block';
+
+                    return true;
+                },
+                'deps': ['modernizr', 'detectizr']
+            },
+            {
+                'name': 'app-basic',
+                'src': {
+                    'jquery': 'app_lib/js/utils/jquery/jquery-1.8.3.min.js', //'//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'//
+                    'klass': 'app_lib/js/utils//klass.min.js',
+                    'underscore': 'app_lib/js/utils/underscore-min.js'
+                },
+                'deps': ['device-validation']
+            },
+            {
+                'name': 'das-core',
+                'src': {
+                    'das-js': 'app_lib/js/das/das-core.js'
+                },
+                'deps': ['app-basic'],
+                'complete': function() {
+
+                    Das.gaTrackPage = window._DasGATrackPage || function(track) {
+                        Das.log('tracking: ' + track);
+                    };
+                    Das.gaTrackEvent = window._DasGATrackEvent || function(eventData) {
+                        Das.log(['_trackEvent'].concat(eventData));
+                    }
+                }
+            },
+            {
+                'name': 'jquery-device-plugins',
+                'src': function() {
+
+                    var obj = {};
+                    var has = false;
+
+                    if (!Modernizr.input.placeholder) {
+                        has = true;
+                        obj['jquery-placeholder'] = 'app_lib/js/utils/jquery/jquery.placeholder.js';
+                    }
+
+                    if (has) {
+                        return obj;
+                    }
+
+                    return true;
+                },
+                'deps': ['modernizr', 'jquery']
+            },
+            {
+                'name': 'jquery-plugins',
+                'src': {
+                    'birthdaypicker': 'app_lib/js/utils/jquery/jquery-bday-picker.min.js'
+                },
+                'deps': ['jquery']
+            },
+            {
+                'name': 'das-utils',
+                'src': {
+                    'das-customForm': 'app_lib/js/das/das-custom-form.js'
+                },
+                complete: function() {
+
+                    var _CustomFormOptions = {
+                        checkboxHeight: "15",
+                        radioHeight: "16",
+                        selectWidth: "100%"
+                    };
+
+                    Das.CustomForm.options(_CustomFormOptions);
+                },
+                'deps': ['das-core']
+            },
+            {
+                'name': 'das-mvc',
+                'src': {
+                    'das-frontendUtils': 'app_lib/js/das/das-frontendutils.js',
+                    'das-formUtils': 'app_lib/js/das/das-formutils.js',
+                    'das-mvc-js': 'app_lib/js/das/das-mvc-frontend.js'
+                },
+                'deps': ['das-core']
+            },
+            {
+                'name': 'app-modules',
+                'src': {
+                    // Specific App module List
+                    'Site': 's/js/das-site.js?v='+_v
+                },
+                'deps': [
+                    'jquery-plugins', 'jquery-device-plugins',
+                    'das-mvc', 'das-utils'
+                ],
+                'complete': function() {
+                    Das.FrontendUtils.callAsyncReady();
+                }
+            }
+        ];
+
+        //
+        //  Das utils
+        //
+        das.Utils = {};
+        window.defer = window.defer || [];
+
+        //
+        // Cookies detector
+        //
+        (function() {
+            var testCookieName = "DAS_CKT",
+            createCookie = function(name, value, days) {
+                var expires;
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toGMTString();
+                }
+                else
+                    expires = "";
+                document.cookie = name + "=" + value + expires + "; path=/";
+            },
+            readCookie = function(name) {
+                var nameEQ = name + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ')
+                        c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0)
+                        return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            },
+            eraseCookie = function(name) {
+                createCookie(name, "", -1);
+            },
+            areCookiesEnabled = function() {
+                var r = false;
+                createCookie(testCookieName, "Hello", 1);
+                if (readCookie(testCookieName) != null) {
+                    r = true;
+                    eraseCookie(testCookieName);
+                }
+                return r;
+            }
+
+            das.Utils.areCookiesEnabled = function() {
+                return areCookiesEnabled();
+            }
+        })();
+
+
+        //
+        // FB sdk Load & Detect Utils  
+        //
+        var isFBLoaded = false;
+        var isFBLoading = false;
+        das.Utils.loadFB = function() {
+
+
+            if (isFBLoading && isFBLoaded)
+                return;
+
+            isFBLoading = true;
+
+            var options = {
+                appId: _FBAppId,
+                channelUrl: _FBChannelUrl
+            };
+
+            Das.FB.init(options, function() {
+                isFBLoaded = true;
+                isFBLoading = false;
+            });
+
+        };
+
+        das.Utils.isFBLoaded = function(cb) {
+
+            if (isFBLoading === false && isFBLoaded === false)
+                das.Utils.loadFB();
+
+            window.defer.push({
+                p: function() {
+                    return isFBLoaded;
+                },
+                h: function() {
+                    cb();
+                },
+                o: {}
+            });
+        };
+
+
+        //
+        // Run Loading Process
+        //
+        das.moduleLoader(depsList)
+    });
+
+})();
+

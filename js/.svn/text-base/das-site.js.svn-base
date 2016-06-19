@@ -1,0 +1,45 @@
+(function($, _) {
+    if (typeof Das !== 'object')
+        return;
+
+    if ('Site' in Das)
+        return;
+
+    var _isInitiated = false;
+
+    var _isMobileDevice = window._DasIsMobileDevice;
+    var _areCookiesEnabled = window._DasAreCookiesEnabled;
+
+    //
+    // Event Helpers
+    //
+    var _binded$els = {};
+    var _bind$el = function(name, $el) {
+        if (!das.hasOwn(_binded$els, name)) {
+            _binded$els[name] = [];
+        }
+        _binded$els[name].push($el);
+    };
+    var _unbind$els = function(name) {
+        if (!das.hasOwn(_binded$els, name)) {
+            return;
+        }
+        var $el;
+        while (typeof ($el = _binded$els[name].shift()) !== "undefined")
+            $el.off();
+    };
+
+    //
+    //
+    //
+
+    var _init = function() {
+	_isInitiated = true;
+    };
+    
+
+    Das.Site = {
+        init: _init
+    };
+
+})(window.Das.$, window._);
