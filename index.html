@@ -16,18 +16,60 @@
     <link rel="stylesheet" type="text/css" href="layoutcss/general.css"/>
     <link rel="stylesheet" type="text/css" href="layoutcss/fonts.css"/>
     <!-- Styles -->
-    <script src="js/jquery-2.2.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/easing/EasePack.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/plugins/CSSPlugin.min.js"></script>
-    <script src="js/general.js"></script>
-    <script src="js/gui.js"></script>
 </head>
 <body>
 
-    <div class="bg_mov">
-        
+
+
+
+
+    <div id="loader" class="centered">
+        <div id="text_p">
+            <span id="carga_t"></span>
+            <span id="carga"></span>
+        </div class="centered">
+        <div id="pre_line"></div>
+        <div id="start">Start</div>
     </div>
+
+
+
+    <div id="container"></div>
+    <!--
+    <div id="constellation">
+        <img id="constellation-image" width="100%" style="opacity:1" />
+    </div>
+    
+    <div id="light">
+        <img id="light-image" width="100%" style="opacity:1" />
+    </div>
+    <div id="gender">
+        <button onclick="showAstrokid('G');">Girl</button>
+        <button onclick="showAstrokid('B');">Boy</button>
+    </div>
+    <a id="back-button">Volver</a>-->
+
+
+
+
+
+
+
+
+
+
+    <div class="bg_mov"> 
+        <div id="x"></div>
+        <div id="xy"></div>
+        <div id="xyz"></div> 
+    </div>
+
+
+
+
+
+
+
 
 	<header>
         <div class="controls_header">
@@ -85,7 +127,7 @@
         </div>
         <div class="content_zodiac_sings">
             <ul class="zodiac_sings">
-                <li class="">
+                <li id="aries-button">
                     <span>ARIES</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
@@ -97,7 +139,7 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li class="">
+                <li id="tauro-button">
                     <span>TAURO</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
@@ -109,8 +151,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="gemini-button">
+                    <span>GEMINIS</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -121,8 +163,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="cancer-button">
+                    <span>CANCER</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -133,8 +175,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="leo-button">
+                    <span>LEO</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -145,8 +187,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="virgo-button">
+                    <span>VIRGO</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -157,8 +199,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="libra-button">
+                    <span>LIBRA</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -169,8 +211,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="scorpio-button">
+                    <span>SCORPIO</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -181,8 +223,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="sagitario-button">
+                    <span>SAGITARIO</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -193,8 +235,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="capricornio-button">
+                    <span>CAPRICORNIO</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -205,8 +247,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="acuario-button">
+                    <span>ACUARIO</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -217,8 +259,8 @@
                         <span>MAY</span>
                     </div>
                 </li>
-                <li>
-                    <span>ARIES</span>
+                <li id="piscis-button">
+                    <span>PISCIS</span>
                     <img src="assets/mini_tauro.png" alt="" class="min_sign">
                     <div class="month_1">
                         <span>01</span>
@@ -395,6 +437,53 @@
         </div>
     </footer>
 
+    <script src="js/jquery-2.2.0.min.js"></script>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/three.js"></script>
+    <script src="js/lib/tween.js"></script>
+    <script src="js/lib/queue.js"></script>
+    <script src="js/lib/preloadjs-0.6.2.min.js"></script>
+    <script src="js/lib/FreeCamera.js"></script>
+    <script src="js/lib/OrbitControls.js"></script>
+    <script src="js/lib/stats.js"></script>
+    <script src="js/lib/dat.gui.js"></script>
+    <script src="js/lib/xRingGeometry.js"></script>
+    <script src="js/lib/ParticleEngine.js"></script>
+    <script src="js/SunMaterial.js"></script>
+    <script src="js/GlowMaterial.js"></script>
+    <script src="js/Examples.js"></script>
+    <script src="js/SolarSystem.js"></script>
+    <script src="js/general.js"></script>
+    <script src="js/gui.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>-->
+
+
+    <script>
+        window.fbAsyncInit = function() {
+        FB.init({
+        appId      : '1714787195427624',
+        xfbml      : true,
+        version    : 'v2.6'
+        });
+        };
+
+        (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-79558225-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 
 </body>
 </html>
