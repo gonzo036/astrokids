@@ -227,6 +227,8 @@ var AstroKids = function() {
         $('#carga_t').text('Universe Loaded!');
         $('#start').click(function(){
             document.getElementById("loader").style.display = "none";
+            document.getElementById("fondo_preload").style.display = "none";
+            document.getElementById("loader").style.display = "none";
             astro.launch();
         })
         $('#start').css( "display", "block");

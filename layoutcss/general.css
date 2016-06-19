@@ -75,6 +75,18 @@ body
 
 /* Fin Precargador */
 
+/* Stats */
+
+#stats{
+  width: 80px;
+  opacity: 0.9;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+}
+
+/* Fin Stats */
+
 /*Animación Fondo Paralax 
 @keyframes animatedBackground {
   from { background-position: 0 0; }
