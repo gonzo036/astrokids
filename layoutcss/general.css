@@ -966,6 +966,24 @@ header .social a.youtube_header:hover
   background-position: -98px 0px;
 }
 
+.child_today
+{
+  position: absolute;
+  height: 0px;
+  top: 90px;
+  width: 320px;
+  margin: 0 auto;
+  left: 0;
+  border: 1px solid red;
+  right: 0;
+}
+.child_today img
+{
+  width: 59px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
 
 
