@@ -798,14 +798,17 @@ header .social a.youtube_header:hover
   left: calc(50% - 75.5px);
   display: block;
   text-align: center;
-  border: 1px solid red;
 }
 .star_social img
 {
   width: 60px;
   height: 60px;
   display: block;
-  margin: 0 auto;
+  margin: 0 auto 30px;
+  box-shadow: 0px 0px 26px #00fff2;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
 }
 .star_social .box_sign
 {
@@ -814,19 +817,56 @@ header .social a.youtube_header:hover
   float: left;
   margin: 0 0 0 0;
 }
+.star_social .box_sign img
+{
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 0px #00fff2;
+}
 .star_social .box_sign_name
 {
   width: 110px;
-  height: 45px;
+  height: auto;
   float: right;
-  margin: 0 0 0 0;
+  margin: 0 0 25px 0;
 }
-
-
-
-
-
-
+.star_social .box_sign_name .name,
+.star_social .box_sign_name .sign
+{
+  display: block;
+  font-size: 20px;
+  padding: 0px 0 0 5px;
+  text-align: left;
+}
+.star_social .box_sign_name .sign
+{
+  padding: 10px 0 0 5px;
+}
+.star_social span
+{
+  display: block;
+  text-align: center;
+  width: 100%;
+  float: left;
+  font-size: 14px;
+}
+.star_social a
+{
+  background: url(../assets/share_mini.png) no-repeat;
+  width: 35px;
+  height: 35px;
+  float: left;
+  margin-top: 15px;
+}
+.star_social a.twitter_share
+{
+  background-position: -49px 0px;
+  margin: 15px 18px 0;
+}
+.star_social a.gmail_share
+{
+  background-position: -98px 0px;
+}
 
 
 
