@@ -154,6 +154,7 @@ header .controls_header .screen_control
   height: 35px;
   float: left;
   overflow: auto;
+  cursor: pointer;
   background: url(../assets/controls_left.png);
 }
 header .controls_header .screen_control
@@ -294,6 +295,7 @@ header .social a.youtube_header:hover
   width: 40px;
   position: absolute;
   height: 40px;
+  cursor: pointer;
   z-index: 0;
   background-position: center 14px;
 }
