@@ -789,7 +789,38 @@ header .social a.youtube_header:hover
 }
 
 
-
+.star_social
+{
+  width: 145px;
+  height: 210px;
+  position: absolute;
+  top: calc(50% - 105px);
+  left: calc(50% - 75.5px);
+  display: block;
+  text-align: center;
+  border: 1px solid red;
+}
+.star_social img
+{
+  width: 60px;
+  height: 60px;
+  display: block;
+  margin: 0 auto;
+}
+.star_social .box_sign
+{
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin: 0 0 0 0;
+}
+.star_social .box_sign_name
+{
+  width: 110px;
+  height: 45px;
+  float: right;
+  margin: 0 0 0 0;
+}
 
 
 
