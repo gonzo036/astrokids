@@ -52,18 +52,11 @@ body
   overflow:hidden;
 }
 #text_p{
-  margin-top: 100px;
+  margin-top: -15px;
   position: absolute;
-  left: calc(50% - 68px);
-  top: 1px;
-  padding: 10px 0px;
-  border-radius: 14px;
-  color: white;
-  border: solid 1px #00fff2;
-  width: 135px;
-  text-align: center;
+  left: calc(50% - 48px);
+  top: 22px;
 }
-
 #start{
   margin-top: -127px;
   width: 90px;
