@@ -540,6 +540,7 @@ header .social a.youtube_header:hover
 .form_name,
 .form_name.big_1
 {
+  font-family: 'avantgarde', Helvetica, sans-serif;
   width: 255px;
   height: 323px;
   margin: 0 auto;
@@ -547,6 +548,7 @@ header .social a.youtube_header:hover
   top: calc(50% - 127.5px);
   left: calc(50% - 120px);
   overflow: hidden;
+  text-align: center;
 }
 .form_name.big_1
 {
@@ -574,6 +576,7 @@ header .social a.youtube_header:hover
   text-align: center;
   margin: 0 auto 15px;
   width: 100%;
+  position: relative;
 }
 .form_name form label.genr
 {
@@ -602,33 +605,30 @@ header .social a.youtube_header:hover
 }
 .form_name form div.radio_male input[type="radio"] + label span:before
 {
-  content: "MALE";
+  content: "FEMALE";
+  font-family: 'dk';
   color: #fff;
   position: absolute;
   height: 14px;
-  bottom: 85px;
-  left: 18px;
+  bottom: 8px;
+  left: -59px;
   margin: 0 auto;
-  display: none;
+  display: block;
+  font-size: 18px;
 }
 .form_name form div.radio_female input[type="radio"] + label span:after
 {
-  content: "FEMALE";
+  content: "MALE";
+  font-family: 'dk';
   color: #fff;
   position: absolute;
   width: 56px;
   height: 14px;
-  bottom: 85px;
-  right: 7px;
+  bottom: 8px;
+  right: -58px;
   margin: 0 auto;
-  display: none;
-}
-.form_name form div.radio_male:hover input[type="radio"] + label span:before,
-.form_name form div.radio_male input[type="radio"]:checked + label span:before,
-.form_name form div.radio_female:hover input[type="radio"] + label span:after,
-.form_name form div.radio_female input[type="radio"]:checked + label span:after
-{
   display: block;
+  font-size: 18px;
 }
 .form_name form div.radio_male:after
 {
@@ -637,9 +637,10 @@ header .social a.youtube_header:hover
   position: absolute;
   width: 13px;
   height: 14px;
-  bottom: 86px;
+  bottom: 25px;
   left: 118px;
   margin: 0 auto;
+  font-family: 'avantgarde';
 }
 .form_name form div.radio_male label span
 {
@@ -701,8 +702,10 @@ header .social a.youtube_header:hover
 
 .form_name form input.create_conts
 {
+  font-family: 'dk';
   width:160px;
   height: 47px;
+  font-size: 20px;
   background: url(../assets/button_create.png) no-repeat;
   border-bottom: none;
 }
@@ -710,6 +713,7 @@ header .social a.youtube_header:hover
 
 #form2 p, #form2 .date_birth
 {
+  font-family: 'avantgarde';
   font-size: 14px;
   display: block;
   text-align: center;
@@ -723,6 +727,7 @@ header .social a.youtube_header:hover
 {
   width: 40px;
   display: inline-block;
+  margin: -11px 10px 0;
 }
 
 .form_name form input.date::-webkit-input-placeholder {
@@ -747,12 +752,14 @@ header .social a.youtube_header:hover
 }
 .form_name form input.create_conts.explore
 {
-  margin:40px auto ;
+  margin:40px auto;
+  font-size: 20px;
 }
 
 
 .tutorial
 {
+  font-family: 'avantgarde';
   width: 580px;
   height: 220px;
   position: absolute;
@@ -805,6 +812,7 @@ header .social a.youtube_header:hover
   margin-top: 30px;
   font-size: 13px;
   display: none;
+  line-height: 14px;
 }
 .tutorial .box_steps:hover p,
 .tutorial .box_steps.activate p
@@ -857,9 +865,10 @@ header .social a.youtube_header:hover
 }
 .constelaciones span
 {
+  font-family: 'avantgarde';
   font-size: 14px;
   color: #f8e649;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .constelaciones .sing_generic
 {
@@ -893,6 +902,7 @@ header .social a.youtube_header:hover
 
 .name_star
 {
+  font-family: 'avantgarde';
   width: 170px;
   height: 46px;
   position: absolute;
@@ -920,6 +930,7 @@ header .social a.youtube_header:hover
 
 .star_social
 {
+  font-family: 'avantgarde', Helvetica, sans-serif;
   width: 145px;
   height: 210px;
   position: absolute;
