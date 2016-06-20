@@ -10,13 +10,12 @@ html, body {
   background: #000;
   height: 100%;
   width: 100%;
-  font-family: Helvetica, sans-serif;
+  font-family: 'dk', Helvetica, sans-serif;
   color: #fff;
   overflow: hidden;
 }
 body 
 {
-  font-family: Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   display: block;
   margin:0 auto;
