@@ -1158,10 +1158,48 @@ header .social a.youtube_header:hover
 }
 
 
-
-
-
-
+.box_zodiac
+{
+  max-width: 720px;
+  width: 100%;
+  height: 86px;
+  margin: 0 auto;
+  position: absolute;
+  top: calc(50% - 43px);
+  left: calc(50% - 360px);
+}
+.box_zodiac .box_content_zodiac_boy
+{
+  width: 145px;
+  height: 86px;
+  float: left;
+}
+.box_zodiac .box_content_zodiac_girl
+{
+  width: 145px;
+  height: 86px;
+  float: right;
+}
+.box_zodiac .box_content_zodiac_boy span
+{
+  float: left;
+}
+.box_zodiac .box_content_zodiac_girl span
+{
+  float: right;
+}
+.box_zodiac .box_content_zodiac_boy span,
+.box_zodiac .box_content_zodiac_girl span
+{
+  font-size: 16px;
+  margin-top: 35px;
+}
+.box_zodiac .box_content_zodiac_boy img,
+.box_zodiac .box_content_zodiac_girl img
+{
+  vertical-align: top;
+  margin-top: -9px;
+}
 
 
 
