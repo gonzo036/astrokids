@@ -451,7 +451,7 @@ header .social a.youtube_header:hover
 {
   background-position: -13px 0px;
 }
-.controls_right .control_down:hover .control
+.controls_right .control_down:hover .control      
 {
   background-position: -13px -14px;
 }
@@ -1495,14 +1495,15 @@ footer .menu_open li a
   color: #fff;
   display: inline-block;
   vertical-align: middle;
+  font-size: 14px;
 }
 footer .menu_open .circle_menu_open
 {
   width: 70px;
   height: 105px;
   position: absolute;
-  top: -56px;
-  left: -4.855555555555%;
+  top: -57px;
+  left: -27px;
   display: none;
   right: 0;
 }
