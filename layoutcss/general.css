@@ -375,6 +375,47 @@ header .social a.youtube_header:hover
   cursor: pointer;
   background: url(../assets/zodiac_button.png);
 }
+.controls_right .ball
+{
+  width: 16px;
+  height: 16px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: #00fff2;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  color: #184351;
+  line-height: 23px;
+  box-shadow: 0px 0px 26px #00fff2;
+  text-align: center;
+
+  -webkit-animation: orbit2 4s linear infinite;
+       -moz-animation: orbit2 4s linear infinite; 
+         -o-animation: orbit2 4s linear infinite; 
+            animation: orbit2 4s linear infinite;
+}
+@-webkit-keyframes orbit2 {
+  from {  -webkit-transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  -webkit-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@-moz-keyframes orbit2 {
+  from {  -moz-transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  -moz-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@-o-keyframes orbit2 {
+  from {  -o-transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  -o-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@keyframes orbit2 {
+  from {  transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
 .controls_right .control_up,
 .controls_right .control_down
 {
@@ -387,6 +428,7 @@ header .social a.youtube_header:hover
   -moz-border-radius: 17.5px;
   border-radius: 17.5px;
   background: #034d5b;
+  margin-left: 300px;
 }
 .controls_right .control_up .control,
 .controls_right .control_down .control
@@ -422,9 +464,10 @@ header .social a.youtube_header:hover
 .controls_right .content_zodiac_sings
 {
   height: 352px;
-  width: 96px;
+  width: 101px;
   margin-top: 55px;
   overflow: hidden;
+  margin-left: 400px;
 }
 .controls_right .content_zodiac_sings .zodiac_sings li
 {
@@ -504,10 +547,35 @@ header .social a.youtube_header:hover
 .controls_right .content_zodiac_sings .zodiac_sings li.active .min_sign
 {
   position: absolute;
-  top: 10%;
+  top: 30px;
   display: block;
-  left: 83%;
+  left: 30px;
+  -webkit-animation: orbit1 4s linear infinite;
+       -moz-animation: orbit1 4s linear infinite; 
+         -o-animation: orbit1 4s linear infinite; 
+            animation: orbit1 4s linear infinite;
 }
+@-webkit-keyframes orbit1 {
+  from {  -webkit-transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  -webkit-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@-moz-keyframes orbit1 {
+  from {  -moz-transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  -moz-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@-o-keyframes orbit1 {
+  from {  -o-transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  -o-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+@keyframes orbit1 {
+  from {  transform: rotate(0deg) translateX(40px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+}
+
+
 .controls_right .content_zodiac_sings .zodiac_sings li.active .month_1,
 .controls_right .content_zodiac_sings .zodiac_sings li.active .month_2
 {
