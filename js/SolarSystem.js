@@ -87,7 +87,7 @@ var AstroKids = function() {
     var MAX_CAMERA_DISTANCE = 9000;
 
     // carpetas del sistema
-    var MODELS_FOLDER = 'models/';
+    var MODELS_FOLDER = 'js/models/';
     var IMAGES_FOLDER = 'images/';
 
     // escala de la esfera glow puesta sobre el planeta
@@ -212,7 +212,6 @@ var AstroKids = function() {
         //preloader.getResult("tree")
 
         preloader = new createjs.LoadQueue(false);
-        $('#carga_t').text('Loading Universe...');
         preloader.addEventListener("complete", this.completePreload);
         preloader.addEventListener("progress", this.progressPreload);
         preloader.loadManifest(manifest);
@@ -224,13 +223,20 @@ var AstroKids = function() {
     }
 
     this.completePreload = function() {
-        $('#carga_t').text('Universe Loaded!');
-        $('#text_p').animate({'margin-top': '100'}, 400);
+
+        
         $('#start').click(function(){
             document.getElementById("loader").style.display = "none";
-            document.getElementById("fondo_preload").style.display = "none";
-            document.getElementById("loader").style.display = "none";
-            astro.launch();
+            $('#text_p').animate({'margin-top': '100'}, 400).css('display', 'none');
+            $('.controls_right').css('display', 'block').animate({'right': '20'}, 400);
+            $('.menu_close').css('display', 'block').animate({'opacity': '1'}, 400);
+            $('.controls_left').css('display', 'block').animate({'left': '1%'}, 400);
+            //$('#fondo_preload').animate({'opacity': '0'}, 1000);
+            //Secciones loading
+            $('.form_name').animate({'opacity': '0'}, 1000);
+            clearInterval(intervalBG);
+            setTimeout(function(){ astro.launch(); }, 1500);
+
         })
         $('#start').css( "display", "block");
     }
@@ -242,6 +248,11 @@ var AstroKids = function() {
 
 
     function onMouseMove(event) {
+        this.mousex = (event.clientX / window.innerWidth) * 2 - 1;
+        this.mousey = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+
+    this.onMouseMove = function(event){
         sistemaSolar.mousex = (event.clientX / window.innerWidth) * 2 - 1;
         sistemaSolar.mousey = -(event.clientY / window.innerHeight) * 2 + 1;
     }
@@ -480,17 +491,17 @@ var AstroKids = function() {
 
         // informacion de los objetos a cargar para cada planeta
         Gods = [
-            'Jupiter.json', //0
-            'Neptune.json', //1
-            'Saturn.json', //2
+            'Sol.json', //0
+            'Mercurio.json', //1
+            'Venus.json', //2
             'M_Tauro.json', //3
-            'Neptune.json', //4
+            'Marte.json', //4
             'Jupiter.json', //5
-            'Saturn.json', //6
-            'Uranus.json', //7
-            'Neptune.json', //8
-            'Uranus.json', //9
-            'Jupiter.json', //10
+            'Saturno.json', //6
+            'Urano.json', //7
+            'Neptuno.json', //8
+            'Pluton.json', //9
+            'Luna.json', //10
         ];
 
         // configuracion de la capa de estrellas (numero, color, tamano)
@@ -522,10 +533,11 @@ var AstroKids = function() {
         sunLight.castShadow = false;
         scene.add(sunLight);
 
-        
-        //loadEvents();
 
         this.initEngine();
+
+        this.loadEvents();
+        this.eventsGender();
         //this.togglePlayPause();
     }
     this.initEngine = function() {
@@ -694,6 +706,19 @@ var AstroKids = function() {
         this.mousey = 0;
         this.animating = false;
         this.particleGroup = null;
+
+        this.astroNube = null;
+
+        this.astroElement = null;
+        this.astroElementcasa = null;
+        this.astroElementplanet = null;
+        this.astroElementmod = null;
+        this.astroElementsign = null;
+
+
+        this.preloaderElements = null;
+
+
         this.PlanetsCreate = function(scene) {
             for (index = 0; index < Planets.length; index++) {
                 var planet = Planets[index];
@@ -837,6 +862,34 @@ var AstroKids = function() {
                     this.scene.remove(this.astroKid);
                     this.astroKid = null;
                 }
+                if (this.astroNube != null) {
+                    this.scene.remove(this.astroNube);
+                    this.astroNube = null;
+                }
+                if (this.astroElement != null) {
+                    this.scene.remove(this.astroElement);
+                    this.astroElement = null;
+                }
+                if (this.astroElementcasa != null) {
+                    this.scene.remove(this.astroElementcasa);
+                    this.astroElementcasa = null;
+                }
+
+                if (this.astroElementplanet != null) {
+                    this.scene.remove(this.astroElementplanet);
+                    this.astroElementplanet = null;
+                }
+
+                if (this.astroElementmod != null) {
+                    this.scene.remove(this.astroElementmod);
+                    this.astroElementmod = null;
+                }
+
+                if (this.astroElementsign != null) {
+                    this.scene.remove(this.astroElementsign);
+                    this.astroElementsign = null;
+                }
+
                 if (this.particleGroup != null) {
                     this.scene.remove(this.particleGroup.mesh);
                     this.particleGroup = null;
@@ -860,9 +913,12 @@ var AstroKids = function() {
                     activePlanet.threeObject.mesh.add(ball);
                     this.glowPlanet = ball;
 
+
                     //ASTROKID
                     var localObject = this;
                     this.astroKid = this.createObject(MODELS_FOLDER + Gods[this.intSelected]);
+                    this.astroNube = this.createObject(MODELS_FOLDER + "Cloud.json");
+
                     //var astroKidScale = activePlanet.radius / Planets[1].radius;
                     //this.astroKid.scale.set(astroKidScale, astroKidScale, astroKidScale);
                     //this.scene.add(this.astroKid);
@@ -943,15 +999,51 @@ var AstroKids = function() {
                                 //var astroKidScale = activePlanet.radius / Planets[1].radius;
                                 var astroKidScale = activePlanet.radius * GOD_SCALE;
 
+                                // instantiate a loader
+                                /*var loader = new THREE.OBJLoader();
+
+
+                                loader.load( 'js/datas/Planeta/Earth.obj', function ( object ) {
+                                    object.traverse( function ( child ) {
+                                        if ( child instanceof THREE.Mesh ) {
+                                            var randomPointPositions = THREE.GeometryUtils.randomPointsInBufferGeometry( child.geometry, 1000  );
+
+                                            var particles = new THREE.Geometry();
+ 
+                                            for (var p = 0; p < 1000; p ++) {
+                                                particles.vertices.push(randomPointPositions[p]);
+                                            }
+
+                                            // material
+                                            material = new THREE.PointsMaterial( {
+                                                size: 0.5,
+                                                transparent: true,
+                                                opacity: 0.7,
+                                                color: 0xFFFFFF
+                                            } );
+
+                                            var _width = Math.sqrt(1000);
+                                            var _height = Math.sqrt(1000);
+                                            
+                                            localObject.astroElement = new THREE.Points(particles, material);
+                                            var astroElementScale = astroKidScale/5.0;
+                                            localObject.astroElement.scale.set(astroElementScale,astroElementScale,astroElementScale);
+                                            localObject.scene.add( localObject.astroElement );
+                                        }
+                                    });
+                                });*/
+
                                 //localObject.particleGroup = ParticleExamples.Sparkles({ scale: activePlanet.radius * SPARKLES_SCALE });
                                 //localObject.scene.add(localObject.particleGroup.mesh);
+                                localObject.astroNube.scale.set(astroKidScale, astroKidScale, astroKidScale);
+                                localObject.scene.add(localObject.astroNube);
 
 
                                 localObject.astroKid.scale.set(astroKidScale, astroKidScale, astroKidScale);
                                 localObject.scene.add(localObject.astroKid);
                                 if (localObject.intSelected != 3) {
-                                    var genderButtons = document.getElementById('gender');
-                                    genderButtons.style.visibility = 'visible';
+                                     $('.box_zodiac').css('display', 'block');
+                                     TweenLite.to(".box_zodiac", 1, {opacity:"1", ease:Power2.easeInOut});
                                 }
                             }
                         });
@@ -973,6 +1065,11 @@ var AstroKids = function() {
                     } else
                     //SCRIPT TRANSICION MODO NINO
                     {
+
+
+                        //ELEMENTS
+                        this.preloadElements(this.intSelected);
+
 
                         this.particleGroup = ParticleExamples.Sparkles({
                             scale: activePlanet.radius * SPARKLES_SCALE
@@ -1039,6 +1136,8 @@ var AstroKids = function() {
                                             localObject.scene.remove(localObject.particleGroup.mesh);
                                             localObject.particleGroup = null;
                                         }
+                                        localObject.astroNube.scale.set(astroKidScale, astroKidScale, astroKidScale);
+                                        localObject.scene.add(localObject.astroNube);
                                         localObject.scene.add(localObject.astroKid);
                                     });
                             }
@@ -1084,6 +1183,92 @@ var AstroKids = function() {
 
         }
 
+
+
+
+        /*ADD AR*/
+        this.preloadElements = function(index){
+
+            var manifest = [
+                    {src:"js/datas/Casas/Casa1.obj", id:"casa"},
+                    {src:"js/datas/Elemento/Air.obj", id:"elemento"},
+                    {src:"js/datas/Planeta/Earth.obj", id:"planeta"},
+                    {src:"js/datas/Modalidad/Cardinal.obj", id:"modalidad"},
+                    {src:"js/datas/Signo/Aries.obj", id:"signo"},
+                ];
+
+            preloaderElements = new createjs.LoadQueue(false); 
+            preloaderElements.on("complete", handleComplete,null,false,{id:index});
+            preloaderElements.loadManifest(manifest);
+        }
+
+
+        function handleComplete(event,data) {
+                for(var i=0;i< event.currentTarget.getItems().length;i++){
+                    var obj = event.currentTarget.getItems()[i]
+                    loadElements(obj,data.id);
+                }
+                preloaderElements.removeAllEventListeners();
+            }
+
+
+        function loadElements(obj,index){
+            var loader = new THREE.OBJLoader();
+            var object = loader.parse( obj.result);
+            object.traverse( function ( child ) {
+                if ( child instanceof THREE.Mesh ) {
+                    var randomPointPositions = THREE.GeometryUtils.randomPointsInBufferGeometry( child.geometry, 1000  );
+
+                    var particles = new THREE.Geometry();
+
+                    for (var p = 0; p < 1000; p ++) {
+                        particles.vertices.push(randomPointPositions[p]);
+                    }
+                    // material
+                    material = new THREE.PointsMaterial( {
+                        size: 0.5,
+                        transparent: true,
+                        opacity: 0.7,
+                        color: 0xFFFFFF
+                    } );
+
+                    var activePlanet = Planets[index];
+                    var astroElementScale = (activePlanet.radius*GOD_SCALE)/5.0;
+                    switch(obj.item.id){
+                        case "casa":
+                            sistemaSolar.astroElementcasa = new THREE.Points(particles, material);                    
+                            sistemaSolar.astroElementcasa.scale.set(astroElementScale,astroElementScale,astroElementScale);
+                            sistemaSolar.scene.add( sistemaSolar.astroElementcasa );
+                            break;
+                        case "elemento":
+                            sistemaSolar.astroElement = new THREE.Points(particles, material);                    
+                            sistemaSolar.astroElement.scale.set(astroElementScale,astroElementScale,astroElementScale);
+                            sistemaSolar.scene.add( sistemaSolar.astroElement );
+                            break;
+                        case "planeta":
+                            sistemaSolar.astroElementplanet = new THREE.Points(particles, material);                    
+                            sistemaSolar.astroElementplanet.scale.set(astroElementScale,astroElementScale,astroElementScale);
+                            sistemaSolar.scene.add( sistemaSolar.astroElementplanet );
+                            break;
+                        case "modalidad":
+                            sistemaSolar.astroElementmod = new THREE.Points(particles, material);                    
+                            sistemaSolar.astroElementmod.scale.set(astroElementScale,astroElementScale,astroElementScale);
+                            sistemaSolar.scene.add( sistemaSolar.astroElementmod );
+                            break;
+                        case "signo":
+                            sistemaSolar.astroElementsign = new THREE.Points(particles, material);                    
+                            sistemaSolar.astroElementsign.scale.set(astroElementScale,astroElementScale,astroElementScale);
+                            sistemaSolar.scene.add( sistemaSolar.astroElementsign );
+                            break;
+
+                    }
+
+                    
+                }
+            });
+        }
+
+
         this.MoveCamera = function(mouse, delta) {
             if (this.intSelected >= 0) {
 
@@ -1107,6 +1292,74 @@ var AstroKids = function() {
                         this.freecamera.camera.position.y - activePlanet.radius * GOD_INCLINATION,
                         this.freecamera.camera.position.z + (dz * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex));
                 }
+
+                if (this.astroNube) {
+                    this.astroNube.position.z = activePlanet.threeObject.mesh.position.z;
+                    this.astroNube.position.x = activePlanet.threeObject.mesh.position.x;
+                    this.astroNube.position.y = activePlanet.threeObject.mesh.position.y + activePlanet.radius * GOD_POSITION_OFFSET_Y;
+
+                    this.astroNube.lookAt(new THREE.Vector3(
+                        this.freecamera.camera.position.x + (dx * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex,
+                        this.freecamera.camera.position.y - activePlanet.radius * GOD_INCLINATION,
+                        this.freecamera.camera.position.z + (dz * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex));
+                }
+
+                if (this.astroElement) {
+                    this.astroElement.position.z = activePlanet.threeObject.mesh.position.z;
+                    this.astroElement.position.x = activePlanet.threeObject.mesh.position.x  - activePlanet.radius * 0.5 ;
+                    this.astroElement.position.y = activePlanet.threeObject.mesh.position.y  + activePlanet.radius * 1.65  ;
+                    
+                   this.astroElement.lookAt(new THREE.Vector3(
+                        this.freecamera.camera.position.x + (dx * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex,
+                        this.freecamera.camera.position.y ,
+                        this.freecamera.camera.position.z + (dz * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex));
+                }
+
+                if (this.astroElementcasa) {
+                    this.astroElementcasa.position.z = activePlanet.threeObject.mesh.position.z;
+                    this.astroElementcasa.position.x = activePlanet.threeObject.mesh.position.x  - activePlanet.radius * 0.5 ;
+                    this.astroElementcasa.position.y = activePlanet.threeObject.mesh.position.y  + activePlanet.radius * 1.45  ;
+                    
+                   this.astroElementcasa.lookAt(new THREE.Vector3(
+                        this.freecamera.camera.position.x + (dx * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex,
+                        this.freecamera.camera.position.y ,
+                        this.freecamera.camera.position.z + (dz * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex));
+                }
+
+                if (this.astroElementplanet) {
+                    this.astroElementplanet.position.z = activePlanet.threeObject.mesh.position.z;
+                    this.astroElementplanet.position.x = activePlanet.threeObject.mesh.position.x  - activePlanet.radius * 0.5 ;
+                    this.astroElementplanet.position.y = activePlanet.threeObject.mesh.position.y  + activePlanet.radius * 1.25  ;
+                    
+                   this.astroElementplanet.lookAt(new THREE.Vector3(
+                        this.freecamera.camera.position.x + (dx * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex,
+                        this.freecamera.camera.position.y ,
+                        this.freecamera.camera.position.z + (dz * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex));
+                }
+
+                if (this.astroElementmod) {
+                    this.astroElementmod.position.z = activePlanet.threeObject.mesh.position.z;
+                    this.astroElementmod.position.x = activePlanet.threeObject.mesh.position.x  + activePlanet.radius * 0.5 ;
+                    this.astroElementmod.position.y = activePlanet.threeObject.mesh.position.y  + activePlanet.radius * 1.55  ;
+                    
+                   this.astroElementmod.lookAt(new THREE.Vector3(
+                        this.freecamera.camera.position.x + (dx * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex,
+                        this.freecamera.camera.position.y ,
+                        this.freecamera.camera.position.z + (dz * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex));
+                }
+
+                if (this.astroElementsign) {
+                    this.astroElementsign.position.z = activePlanet.threeObject.mesh.position.z;
+                    this.astroElementsign.position.x = activePlanet.threeObject.mesh.position.x  + activePlanet.radius * 0.5 ;
+                    this.astroElementsign.position.y = activePlanet.threeObject.mesh.position.y  + activePlanet.radius * 1.35  ;
+                    
+                   this.astroElementsign.lookAt(new THREE.Vector3(
+                        this.freecamera.camera.position.x + (dx * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex,
+                        this.freecamera.camera.position.y ,
+                        this.freecamera.camera.position.z + (dz * activePlanet.radius) * GOD_TURN_INTENSITY * this.mousex));
+                }
+
+
 
                 if (this.particleGroup) {
                     //console.warn("completado fase 1: ");
@@ -1229,6 +1482,7 @@ var AstroKids = function() {
         );
     }
 
+
     this.showAstrokid = function(bg) {
         console.warn("call selected sign: " + selectedSign);
         if (bg == 'B')
@@ -1236,14 +1490,25 @@ var AstroKids = function() {
         if (bg == 'G')
             Gods[3] = ZODIAC_SIGNS[selectedSign].astroGirl;
         sistemaSolar.changeSelected(3);
-        document.getElementById('gender').style.visibility = 'hidden';
+        TweenLite.to(".box_zodiac", 1, {opacity:"0", ease:Power2.easeInOut, onComplete:function(){$('.box_zodiac').css('display', 'none');}});
 
     }
+
+    this.eventsGender = function(){
+        $('.box_content_zodiac_boy').click(function() {
+            astro.showAstrokid('B');
+        });
+        $('.box_content_zodiac_girl').click(function() {
+            astro.showAstrokid('G');
+        });
+    }
+
+
 
     this.loadButtonEvents = function(object, index) {
         var signOptions = ZODIAC_SIGNS[index];
         object.addEventListener('click', function() {
-            document.getElementById('gender').style.visibility = 'hidden';
+           /* document.getElementById('gender').style.visibility = 'hidden';
             if (index === 0)
                 $("#right-menu").fadeIn(1000, function() {
                     // Animation complete.
@@ -1251,33 +1516,36 @@ var AstroKids = function() {
             else
                 $("#right-menu").fadeOut(2000, function() {
                     // Animation complete.
-                });
+                });*/
             selectedSign = index;
-            hideConstellation();
+            //hideConstellation();
             sistemaSolar.changeSelected(signOptions.planet);
         }, false);
-        object.addEventListener('mouseover', function() {
+        /*object.addEventListener('mouseover', function() {
             showConstellation(signOptions.constelation);
         }, false);
         object.addEventListener('mouseout', function() {
             hideConstellation();
-        }, false);
+        }, false);*/
     }
 
     this.loadEvents = function() {
-        loadButtonEvents(document.getElementById('back-button'), 0);
-        loadButtonEvents(document.getElementById('aries-button'), 1);
-        loadButtonEvents(document.getElementById('tauro-button'), 2);
-        loadButtonEvents(document.getElementById('gemini-button'), 3);
-        loadButtonEvents(document.getElementById('cancer-button'), 4);
-        loadButtonEvents(document.getElementById('leo-button'), 5);
-        loadButtonEvents(document.getElementById('virgo-button'), 6);
-        loadButtonEvents(document.getElementById('libra-button'), 7);
-        loadButtonEvents(document.getElementById('scorpio-button'), 8);
-        loadButtonEvents(document.getElementById('sagitario-button'), 9);
-        loadButtonEvents(document.getElementById('capricornio-button'), 10);
-        loadButtonEvents(document.getElementById('acuario-button'), 11);
-        loadButtonEvents(document.getElementById('piscis-button'), 12);
+        this.loadButtonEvents(document.getElementById('back-button'), 0);
+        this.loadButtonEvents(document.getElementById('aries-button'), 1);
+        this.loadButtonEvents(document.getElementById('tauro-button'), 2);
+        this.loadButtonEvents(document.getElementById('gemini-button'), 3);
+        this.loadButtonEvents(document.getElementById('cancer-button'), 4);
+        this.loadButtonEvents(document.getElementById('leo-button'), 5);
+        this.loadButtonEvents(document.getElementById('virgo-button'), 6);
+        this.loadButtonEvents(document.getElementById('libra-button'), 7);
+        this.loadButtonEvents(document.getElementById('scorpio-button'), 8);
+        this.loadButtonEvents(document.getElementById('sagitario-button'), 9);
+        this.loadButtonEvents(document.getElementById('capricornio-button'), 10);
+        this.loadButtonEvents(document.getElementById('acuario-button'), 11);
+        this.loadButtonEvents(document.getElementById('piscis-button'), 12);
+
+
+
     }
 
 }

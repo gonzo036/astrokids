@@ -24,7 +24,7 @@ body
   right: 0;
   transition:all 0.5s ease-out;
   -webkit-overflow-scrolling: touch;
-  background: url(../assets/bg_test.png);
+  background: url(../assets/bg_pre.jpg);
   background-size: cover;
 
 }
@@ -51,19 +51,18 @@ body
   overflow:hidden;
 }
 #text_p{
-  margin-top: -15px;
-  position: absolute;
-  left: calc(50% - 68px);
-  top: 1px;
-  padding: 10px 0px;
-  border-radius: 14px;
-  color: white;
-  border: solid 1px #00fff2;
-  width: 135px;
-  text-align: center;
+    margin-top: -38px;
+    position: absolute;
+    left: calc(50% - 70px);
+    top: 1px;
+    padding: 10px 0px;
+    color: white;
+    width: 135px;
+    text-align: center;
+    font-size: 22px;
 }
 #start{
-  margin-top: -127px;
+  margin-top: -87px;
   width: 90px;
   margin-left: calc(50% - 50px);
   position: absolute;
@@ -110,12 +109,58 @@ body
   to { background-position: 100% 0; }
 }
 */
+
+
+/* Estrellas */
+.coords{
+  position: absolute;
+
+}
+
+
+.stars{
+  position:absolute;
+}
+.star
+{
+  font-family: 'avantgarde';
+  width: 170px;
+  height: 46px;
+  display: block;
+  text-align: center;
+}
+.star img
+{
+  width: 44px;
+  height: 44px;
+  float: left;
+}
+.star p
+{
+  width: auto;
+  display: block;
+  padding:7px 5px 0 5px;
+  font-size: 14px;
+  text-align: left;
+  float: left;
+  opacity: 0;
+}
+
+
+
+
+/* Fin Estrellas */
+
+
 .bg_mov
 {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    background: url(assets/bg_pre.jpg);
+    background-size: cover;
+    background-image: url(../assets/bg_pre.jpg);
 }
 #x{
   position: absolute;
@@ -124,6 +169,7 @@ body
   height: 100%;
   background-image: url(../images/mosaico.jpg);
   background-position: 0px 0px;
+  mix-blend-mode: exclusion;
   animation: animatedBackground 60s linear infinite;
   -ms-animation: animatedBackground 60s linear infinite;
   -moz-animation: animatedBackground 60s linear infinite;
@@ -134,9 +180,10 @@ body
   color:white;
   width: 100%;
   height: 100%;
-  background-image: url(../images/mosaico.png);
+  background-image: url(../images/mosaico.jpg);
   background-position: 0px 0px;
   background-size: 200px 200px;
+  mix-blend-mode: exclusion;
   animation: animatedBackground 60s linear infinite;
   -ms-animation: animatedBackground 60s linear infinite;
   -moz-animation: animatedBackground 60s linear infinite;
@@ -146,11 +193,11 @@ body
   position: absolute;
   color:white;
   width: 100%;
-  display: none;
   height: 100%;
-  background-image: url(../images/mosaico.png);
+  background-image: url(../images/mosaico.jpg);
   background-position: 0px 0px;
   background-size: 800px 800px;
+  mix-blend-mode: exclusion;
   animation: animatedBackground 60s linear infinite;
   -ms-animation: animatedBackground 60s linear infinite;
   -moz-animation: animatedBackground 60s linear infinite;
@@ -265,7 +312,7 @@ header .social a.youtube_header:hover
   width: 40px;
   height: 260px;
   position: absolute;
-  left: 2%;
+  left: -5%;
   bottom: 40px;
 }
 .controls_left .controls li,
@@ -361,10 +408,10 @@ header .social a.youtube_header:hover
 .controls_right
 {
   position: absolute;
-  right: 2%;
   top: 25%;
   width: 96px;
-  height: 460px;
+  display: none;
+  right: -160px;
 }
 .controls_right .zodiac_button
 {
@@ -463,21 +510,22 @@ header .social a.youtube_header:hover
 }
 .controls_right .content_zodiac_sings
 {
-  height: 352px;
-  width: 101px;
+  height: 392px;
+  width: 121px;
   margin-top: 55px;
   overflow: hidden;
   margin-left: 400px;
+  margin-bottom: 55px;
 }
 .controls_right .content_zodiac_sings .zodiac_sings li
 {
-  width: 63px;
-  height: 63px;
+  width: 73px;
+  height: 73px;
   border: 2px solid #034e5c;
   margin: 0 auto;
-  -webkit-border-radius: 31.5px;
-  -moz-border-radius: 31.5px;
-  border-radius: 31.5px;
+  -webkit-border-radius: 36.5px;
+  -moz-border-radius: 36.5px;
+  border-radius: 36.5px;
   text-align: center;
   color: #fff;
   font-size: 15px;
@@ -503,6 +551,7 @@ header .social a.youtube_header:hover
 .controls_right .content_zodiac_sings .zodiac_sings li span
 {
   line-height: 63px;
+  font-size: 14px;
 }
 .controls_right .content_zodiac_sings .zodiac_sings li .min_sign
 {
@@ -511,11 +560,11 @@ header .social a.youtube_header:hover
 .controls_right .content_zodiac_sings .zodiac_sings li.active
 {
   border: 2px solid #c90072;
-  width: 83px;
-  height: 83px;
-  -webkit-border-radius: 41.5px;
-  -moz-border-radius: 41.5px;
-  border-radius: 41.5px;
+  width: 93px;
+  height: 93px;
+  -webkit-border-radius: 46.5px;
+  -moz-border-radius: 46.5px;
+  border-radius: 46.5px;
   box-shadow: 0px 0px 20px #c90072;
   transition:all 0.5s ease-out;
 }
@@ -547,32 +596,32 @@ header .social a.youtube_header:hover
 .controls_right .content_zodiac_sings .zodiac_sings li.active .min_sign
 {
   position: absolute;
-  top: 30px;
+  top: 35px;
   display: block;
-  left: 30px;
+  left: 35px;
   -webkit-animation: orbit1 4s linear infinite;
        -moz-animation: orbit1 4s linear infinite; 
          -o-animation: orbit1 4s linear infinite; 
             animation: orbit1 4s linear infinite;
 }
 @-webkit-keyframes orbit1 {
-  from {  -webkit-transform: rotate(0deg) translateX(40px) rotate(0deg); }
-  to   {  -webkit-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+  from {  -webkit-transform: rotate(0deg) translateX(45px) rotate(0deg); }
+  to   {  -webkit-transform: rotate(360deg) translateX(45px) rotate(-360deg); }
 }
 
 @-moz-keyframes orbit1 {
-  from {  -moz-transform: rotate(0deg) translateX(40px) rotate(0deg); }
-  to   {  -moz-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+  from {  -moz-transform: rotate(0deg) translateX(45px) rotate(0deg); }
+  to   {  -moz-transform: rotate(360deg) translateX(45px) rotate(-360deg); }
 }
 
 @-o-keyframes orbit1 {
-  from {  -o-transform: rotate(0deg) translateX(40px) rotate(0deg); }
-  to   {  -o-transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+  from {  -o-transform: rotate(0deg) translateX(45px) rotate(0deg); }
+  to   {  -o-transform: rotate(360deg) translateX(45px) rotate(-360deg); }
 }
 
 @keyframes orbit1 {
-  from {  transform: rotate(0deg) translateX(40px) rotate(0deg); }
-  to   {  transform: rotate(360deg) translateX(40px) rotate(-360deg); }
+  from {  transform: rotate(0deg) translateX(45px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(45px) rotate(-360deg); }
 }
 
 
@@ -835,6 +884,7 @@ header .social a.youtube_header:hover
   left: calc(50% - 290px);
   display: block;
   text-align: center;
+  opacity: 0;
 }
 .tutorial .box_steps
 {
@@ -910,6 +960,7 @@ header .social a.youtube_header:hover
   left: calc(50% - 183px);
   display: block;
   text-align: center;
+  opacity: 0;
 }
 .constelaciones img
 {
@@ -974,10 +1025,9 @@ header .social a.youtube_header:hover
   width: 170px;
   height: 46px;
   position: absolute;
-  top: calc(50% - 23px);
-  left: calc(50% - 71px);
   display: block;
   text-align: center;
+  opacity: 0;
 }
 .name_star img
 {
@@ -1002,10 +1052,11 @@ header .social a.youtube_header:hover
   width: 145px;
   height: 210px;
   position: absolute;
-  top: calc(50% - 105px);
+  top: 237px;
   left: calc(50% - 75.5px);
   display: block;
   text-align: center;
+  opacity: 0;
 }
 .star_social img
 {
@@ -1245,6 +1296,7 @@ header .social a.youtube_header:hover
   position: absolute;
   top: calc(50% - 43px);
   left: calc(50% - 360px);
+  opacity: 0;
 }
 .box_zodiac .box_content_zodiac_boy
 {
@@ -1375,6 +1427,8 @@ footer .menu_close
   right: 0;
   margin: 0 auto;
   cursor: pointer;
+  display:none;
+  opacity:0;
 }
 
 footer .menu_open {
