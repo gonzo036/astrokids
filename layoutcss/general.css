@@ -731,6 +731,7 @@ header .social a.youtube_header:hover
 {
   content: "FEMALE";
   font-family: 'dk';
+  text-transform: uppercase;
   color: #fff;
   position: absolute;
   height: 14px;
@@ -744,6 +745,7 @@ header .social a.youtube_header:hover
 {
   content: "MALE";
   font-family: 'dk';
+  text-transform: uppercase;
   color: #fff;
   position: absolute;
   width: 56px;
@@ -827,6 +829,7 @@ header .social a.youtube_header:hover
 .form_name form input.create_conts
 {
   font-family: 'dk';
+  text-transform: uppercase;
   width:160px;
   height: 47px;
   font-size: 20px;
