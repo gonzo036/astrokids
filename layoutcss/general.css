@@ -25,8 +25,6 @@ body
   transition:all 0.5s ease-out;
   -webkit-overflow-scrolling: touch;
   background: url(../assets/bg_pre.jpg);
-  background-size: cover;
-
 }
 
 
@@ -126,6 +124,7 @@ body
   font-family: 'avantgarde';
   width: 170px;
   height: 46px;
+  line-height: 46px;
   display: block;
   text-align: center;
 }
@@ -139,7 +138,7 @@ body
 {
   width: auto;
   display: block;
-  padding:7px 5px 0 5px;
+  padding: 0px 5px 0 5px;
   font-size: 14px;
   text-align: left;
   float: left;
@@ -216,8 +215,10 @@ header
   width: 96%;
   padding: 0 2%;
   margin: 25px auto 0;
-  position: relative;
+  position: absolute;
   height: auto;
+  top: 0;
+  z-index: 123;
 }
 header .controls_header
 {
@@ -259,6 +260,7 @@ header .controls_header .screen_control:hover
 header .logo
 {
   position: absolute;
+  top: -100px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -273,6 +275,7 @@ header .social
   height: 35px;
   position: absolute;
   right: 0;
+  top: -100px;
   display: block;
   text-align: center;
 }
@@ -412,6 +415,7 @@ header .social a.youtube_header:hover
   width: 96px;
   display: none;
   right: -160px;
+  top: calc(50% - 250px);
 }
 .controls_right .zodiac_button
 {
@@ -510,9 +514,10 @@ header .social a.youtube_header:hover
 }
 .controls_right .content_zodiac_sings
 {
-  height: 392px;
+  height: 402px;
   width: 121px;
-  margin-top: 55px;
+  padding: 10px 0 20px;
+  margin-top: 50px;
   overflow: hidden;
   margin-left: 400px;
   margin-bottom: 55px;
@@ -560,8 +565,8 @@ header .social a.youtube_header:hover
 .controls_right .content_zodiac_sings .zodiac_sings li.active
 {
   border: 2px solid #c90072;
-  width: 93px;
-  height: 93px;
+  width: 91px;
+  height: 91px;
   -webkit-border-radius: 46.5px;
   -moz-border-radius: 46.5px;
   border-radius: 46.5px;
@@ -596,32 +601,32 @@ header .social a.youtube_header:hover
 .controls_right .content_zodiac_sings .zodiac_sings li.active .min_sign
 {
   position: absolute;
-  top: 35px;
+  top: 33px;
   display: block;
-  left: 35px;
+  left: 33px;
   -webkit-animation: orbit1 4s linear infinite;
        -moz-animation: orbit1 4s linear infinite; 
          -o-animation: orbit1 4s linear infinite; 
             animation: orbit1 4s linear infinite;
 }
 @-webkit-keyframes orbit1 {
-  from {  -webkit-transform: rotate(0deg) translateX(45px) rotate(0deg); }
-  to   {  -webkit-transform: rotate(360deg) translateX(45px) rotate(-360deg); }
+  from {  -webkit-transform: rotate(0deg) translateX(43px) rotate(0deg); }
+  to   {  -webkit-transform: rotate(360deg) translateX(43px) rotate(-360deg); }
 }
 
 @-moz-keyframes orbit1 {
-  from {  -moz-transform: rotate(0deg) translateX(45px) rotate(0deg); }
-  to   {  -moz-transform: rotate(360deg) translateX(45px) rotate(-360deg); }
+  from {  -moz-transform: rotate(0deg) translateX(43px) rotate(0deg); }
+  to   {  -moz-transform: rotate(360deg) translateX(43px) rotate(-360deg); }
 }
 
 @-o-keyframes orbit1 {
-  from {  -o-transform: rotate(0deg) translateX(45px) rotate(0deg); }
-  to   {  -o-transform: rotate(360deg) translateX(45px) rotate(-360deg); }
+  from {  -o-transform: rotate(0deg) translateX(43px) rotate(0deg); }
+  to   {  -o-transform: rotate(360deg) translateX(43px) rotate(-360deg); }
 }
 
 @keyframes orbit1 {
-  from {  transform: rotate(0deg) translateX(45px) rotate(0deg); }
-  to   {  transform: rotate(360deg) translateX(45px) rotate(-360deg); }
+  from {  transform: rotate(0deg) translateX(43px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(43px) rotate(-360deg); }
 }
 
 
@@ -893,6 +898,7 @@ header .social a.youtube_header:hover
   display: inline-block;
   position: relative;
   vertical-align: top;
+  opacity: 0;
 }
 
 .tutorial .box_steps img
@@ -917,14 +923,109 @@ header .social a.youtube_header:hover
   -moz-border-radius: 50%;
   border-radius: 50%;
   background: #00fff2;
+  font-weight: 700;
   position: absolute;
-  top: 9%;
-  right: 2%;
+  top: 30%;
+  right: 41%;
   color: #184351;
   line-height: 23px;
   text-align: center;
   display: none;
+
+
+  -webkit-animation: orbit3 4s linear infinite;
+       -moz-animation: orbit3 4s linear infinite; 
+         -o-animation: orbit3 4s linear infinite; 
+            animation: orbit3 4s linear infinite;
 }
+@-webkit-keyframes orbit3 {
+  from {  -webkit-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -webkit-transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+@-moz-keyframes orbit3 {
+  from {  -moz-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -moz-transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+@-o-keyframes orbit3 {
+  from {  -o-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -o-transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+@keyframes orbit3 {
+  from {  transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+.tutorial .box_steps:nth-child(2) .number_tutorial
+{
+    -webkit-animation: orbit4 3s linear infinite;
+       -moz-animation: orbit4 3s linear infinite; 
+         -o-animation: orbit4 3s linear infinite; 
+            animation: orbit4 3s linear infinite;
+}
+@-webkit-keyframes orbit4 {
+  from {  -webkit-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -webkit-transform: rotate(-360deg) translateX(77px) rotate(360deg); }
+}
+
+@-moz-keyframes orbit4 {
+  from {  -moz-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -moz-transform: rotate(-360deg) translateX(77px) rotate(360deg); }
+}
+
+@-o-keyframes orbit4 {
+  from {  -o-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -o-transform: rotate(-360deg) translateX(77px) rotate(360deg); }
+}
+
+@keyframes orbit4 {
+  from {  transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  transform: rotate(-360deg) translateX(77px) rotate(360deg); }
+}
+
+.tutorial .box_steps:nth-child(3) .number_tutorial
+{
+    -webkit-animation: orbit5 3s linear infinite;
+       -moz-animation: orbit5 3s linear infinite; 
+         -o-animation: orbit5 3s linear infinite; 
+            animation: orbit5 3s linear infinite;
+}
+@-webkit-keyframes orbit5 {
+  from {  -webkit-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -webkit-transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+@-moz-keyframes orbit5 {
+  from {  -moz-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -moz-transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+@-o-keyframes orbit5 {
+  from {  -o-transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  -o-transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+@keyframes orbit5 {
+  from {  transform: rotate(0deg) translateX(77px) rotate(0deg); }
+  to   {  transform: rotate(360deg) translateX(77px) rotate(-360deg); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .tutorial .box_steps p
 {
   margin-top: 30px;
@@ -956,17 +1057,19 @@ header .social a.youtube_header:hover
   width: 382px;
   height: 366px;
   position: absolute;
-  top: calc(50% - 191px);
+  top: calc(50% - 235px);
   left: calc(50% - 183px);
   display: block;
   text-align: center;
   opacity: 0;
+  background: url(../assets/bg_constelacion.png) no-repeat center;
+  background-size: contain;
 }
 .constelaciones img
 {
-  width: 90%;
+  width: 72%;
   height: auto;
-  margin-bottom: 55px;
+  margin: 50px 0 60px 0;
 }
 .constelaciones .text_constelaciones
 {
@@ -1389,27 +1492,43 @@ header .social a.youtube_header:hover
 
 
 
-
+.bg_black
+{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 100000000;
+  background: #000;
+  opacity: 1;
+}
 
 
 footer
 {
   position: absolute;
+  font-family: 'Open Sans',sans-serif;
   bottom: 0px;
   width: 100%;
   background: url(../assets/bg_footer.png);
   height: 25px;
-<
-  div class="child_today" style="display: none;">         <img src="assets/item_3_big.png" alt="">         <p>Lorem ipsum dolor sit amet</p>         <div class="box_form_child_today">             <div class="ball"></div>             <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do et dolore magna aliqua:</p>             <form action="">                 <input type="text" placeholder="DD" class="date2">                 <input type="text" placeholder="MM" class="date2">                 <input type="text" placeholder="YY" class="date2">                 <input type="submit" class="next_button" value="EXPLORE">             </form>         </div>     </div>;
   border-top: solid 1px #00fff2;
+}
+footer .center
+{
+  max-width: 1367px;
+  margin: auto;
+  color: #757575;
+  overflow: hidden;
+  text-align: center;
 }
 footer .copyright,
 footer .powerby
 {
-  font-size: 10px;
+  font-size: 12px;
   position: absolute;
   left: 2%;
   line-height: 25px;
+  color: #fff;
 }
 footer .powerby
 {
@@ -1437,6 +1556,7 @@ footer .menu_open {
   left: 0;
   margin: 0 auto;
   right: 0;
+  font-size: 9px;
   width: 593px;
   height: 57px;
   text-align: center;
@@ -1549,7 +1669,7 @@ footer .menu_open li a
   color: #fff;
   display: inline-block;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: 10.5px;
 }
 footer .menu_open .circle_menu_open
 {

@@ -12,9 +12,11 @@
 	<!-- title -->
     <title>..: AstroKids :..</title>
     <!-- Styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" type="text/css" href="layoutcss/reset.css"/>
     <link rel="stylesheet" type="text/css" href="layoutcss/general.css"/>
     <link rel="stylesheet" type="text/css" href="layoutcss/fonts.css"/>
+
     <!-- Styles -->
 </head>
 <body>
@@ -23,7 +25,21 @@
 
 
     
-
+    <header>
+        <div class="controls_header">
+            <div class="sound"></div>
+            <div class="screen_control"></div>
+        </div>
+        <div class="logo">
+            <img src="assets/logo_1.png" alt="" id="logo_1" style="display:none;">
+            <img src="assets/logo_2.png" alt="" id="logo_2" >
+        </div>
+        <div class="social">
+            <a href="" class="facebook_header"></a>
+            <a href="" class="twitter_header"></a>
+            <a href="" class="youtube_header"></a>
+        </div>   
+    </header>
 
 
     <div id="container"></div>
@@ -43,9 +59,7 @@
 
 
 
-
-
-
+    <div class="bg_black"></div>
 
 
 
@@ -63,21 +77,7 @@
 
 
 
-	<header>
-        <div class="controls_header">
-            <div class="sound"></div>
-            <div class="screen_control"></div>
-        </div>
-        <div class="logo">
-            <img src="assets/logo_1.png" alt="" id="logo_1" style="display:none;">
-            <img src="assets/logo_2.png" alt="" id="logo_2" >
-        </div>
-        <div class="social">
-            <a href="" class="facebook_header"></a>
-            <a href="" class="twitter_header"></a>
-            <a href="" class="youtube_header"></a>
-        </div>   
-    </header>
+	
 
     <div class="controls_left">
         <ul class="controls">
@@ -356,7 +356,18 @@
 
 
     <div class="constelaciones" id="constellation" style="display:none;">
-        <img src="assets/constelacion1.png" id="constellation-image" alt="">
+        <img src="assets/constelacion_1.png" id="constellation-image" alt="">
+        <img src="assets/constelacion_2.png" alt="" style="display:none;" id="constellation-image_2">
+        <img src="assets/constelacion_3.png" alt="" style="display:none;" id="constellation-image_3">
+        <img src="assets/constelacion_4.png" alt="" style="display:none;" id="constellation-image_4">
+        <img src="assets/constelacion_5.png" alt="" style="display:none;" id="constellation-image_5">
+        <img src="assets/constelacion_6.png" alt="" style="display:none;" id="constellation-image_6">
+        <img src="assets/constelacion_7.png" alt="" style="display:none;" id="constellation-image_7">
+        <img src="assets/constelacion_8.png" alt="" style="display:none;" id="constellation-image_8">
+        <img src="assets/constelacion_9.png" alt="" style="display:none;" id="constellation-image_9">
+        <img src="assets/constelacion_10.png" alt="" style="display:none;" id="constellation-image_10">
+        <img src="assets/constelacion_11.png" alt="" style="display:none;" id="constellation-image_11">
+        <img src="assets/constelacion_12.png" alt="" style="display:none;" id="constellation-image_12">
         <div class="text_constelaciones">
             <p id="name_const">Sagittarius constellation</p>
             <span id="date_const">November 23 / December 21</span>
@@ -369,17 +380,17 @@
 
 
     <div class="tutorial" style="display:none;">
-        <div class="box_steps"><!-- agregar clase cada vez en cada tutorial activate-->
+        <div class="box_steps" id="turorial_1"><!-- agregar clase cada vez en cada tutorial activate-->
             <div class="number_tutorial">1</div>
             <img src="assets/tutorial1.png" alt="">
             <p>Guide your way around by simply moving</p>
         </div>
-        <div class="box_steps ">
+        <div class="box_steps" id="turorial_2">
             <div class="number_tutorial">2</div>
             <img src="assets/tutorial2.png" alt="">
             <p>Click on any empty space inside the sign costellation.</p>
         </div>
-        <div class="box_steps ">
+        <div class="box_steps" id="turorial_3">
             <div class="number_tutorial">3</div>
             <img src="assets/tutorial3.png" alt="">
             <p>Share your sons star with your family an friends.</p>
@@ -455,42 +466,44 @@
     </div>
 
     <footer>
-        <div class="copyright">
-            copyright 2016 el universodelosniños.com
-        </div>
-        <div class="menu_close"></div>
-        <ul class="menu_open" style="display:none;">
-            <li class="item_1 ">
-                <a href="javascript:void(0);">
-                    MY SPACE
-                </a>
-            </li>
-            <li class="item_2">
-                <a href="javascript:void(0);">
-                    ABOUT US
-                </a>
-            </li>
-            <li class="item_3">
-                <a href="javascript:void(0);">
-                    CHOLDREN TODAY
-                </a>  
-            </li>
-            <li class="item_4">
-                <a href="javascript:void(0);">
-                    STORE
-                </a>
-            </li>
-            <li class="item_5">
-                <a href="javascript:void(0);">
-                    APP SPACE
-                </a>
-            </li>
-            <div class="circle_menu_open">
-                <img src="assets/galaxy_test.png" alt="">
+        <div class="center">
+            <div class="copyright">
+                All Rights reserved - KosmoKids 2016
             </div>
-        </ul>
-        <div class="powerby">
-            Poweres by 360 PIXEL HOUSE
+            <div class="menu_close"></div>
+            <ul class="menu_open" style="display:none;">
+                <li class="item_1 ">
+                    <a href="javascript:void(0);">
+                        MY SPACE
+                    </a>
+                </li>
+                <li class="item_2">
+                    <a href="javascript:void(0);">
+                        ABOUT US
+                    </a>
+                </li>
+                <li class="item_3">
+                    <a href="javascript:void(0);">
+                        CHOLDREN TODAY
+                    </a>  
+                </li>
+                <li class="item_4">
+                    <a href="javascript:void(0);">
+                        STORE
+                    </a>
+                </li>
+                <li class="item_5">
+                    <a href="javascript:void(0);">
+                        APP SPACE
+                    </a>
+                </li>
+                <div class="circle_menu_open">
+                    <img src="assets/galaxy_test.png" alt="">
+                </div>
+            </ul>
+            <div class="powerby">
+                Powered by 360PixelHouse
+            </div>
         </div>
     </footer>
 

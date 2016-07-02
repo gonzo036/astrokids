@@ -5,7 +5,8 @@ var posY = 0;
 var validCreation = 0;
 
 $(document).ready(function() {
-  
+  $('.bg_black').delay(700).fadeOut(700);
+
   $('.zodiac_sings li').click(
     function(e) {
     e.preventDefault(); // prevent the default action
@@ -14,7 +15,7 @@ $(document).ready(function() {
     $(this).addClass('active');
 
   });
-
+  
   // open menu footer
   $('.menu_close').mouseover(function() {
     $(this).animate({'bottom': '-300'}, 400);
@@ -50,19 +51,19 @@ $(document).ready(function() {
 
     // animate mini galaxy footer
     if($('.item_1').hasClass('active')){
-      $('.circle_menu_open').animate({'left': '-27'}, 600);
+      $('.circle_menu_open').animate({'left': '-29'}, 600);
       $('.circle_menu_open').css('background', 'url(assets/item_1.png) no-repeat 0px -10px');
     } else if ($('.item_2').hasClass('active')){
-      $('.circle_menu_open').animate({'left': '121'}, 600);
+      $('.circle_menu_open').animate({'left': '115'}, 600);
       $('.circle_menu_open').css('background', 'url(assets/item_2.png) no-repeat center 0px');
     } else if ($('.item_3').hasClass('active')){
-      $('.circle_menu_open').animate({'left': '266'}, 600);
+      $('.circle_menu_open').animate({'left': '260'}, 600);
       $('.circle_menu_open').css('background', 'url(assets/item_3.png) no-repeat center 0px');
     } else if ($('.item_4').hasClass('active')){
-      $('.circle_menu_open').animate({'left': '409'}, 600);
+      $('.circle_menu_open').animate({'left': '404'}, 600);
       $('.circle_menu_open').css('background', 'url(assets/item_4.png) no-repeat center 0px');
     } else if ($('.item_5').hasClass('active')){
-      $('.circle_menu_open').animate({'left': '550'}, 600);
+      $('.circle_menu_open').animate({'left': '552'}, 600);
       $('.circle_menu_open').css('background', 'url(assets/item_5.png) no-repeat center 0px');
     }
     // animate mini galaxy footer
@@ -192,6 +193,15 @@ $(document).ready(function() {
   }
   function Tutorial(){
       TweenLite.to(".tutorial", 1, {delay:5, ease:Power2.easeInOut, onComplete:Constela});
+      $('.logo, .social').animate({'top': '0'}, 500);
+      $('#turorial_1').delay(1000).addClass('activate').animate({'opacity': '1'}, 500);
+      $('#turorial_2').delay(2500).addClass('activate').animate({'opacity': '1'}, 500);
+      $('#turorial_3').delay(3500).addClass('activate').animate({'opacity': '1'}, 500);
+
+      if ($('#turorial_1').hasClass('active')) 
+      {
+        $(this).delay(1000).removeClass('activate')
+      }
   }
   function Constela(){
       desaparecer($(".tutorial"));
@@ -289,12 +299,14 @@ $(document).ready(function() {
   }
 
   $('#start').click(function() {
+    $('.logo, .social').animate({'top': '0'}, 500);
     clearInterval(intervalStar);
     desaparecer($('.name_star'));
     desaparecer($('.stars'));
     desaparecer($('.star_social'));
     desaparecer($('.constelaciones'));
     desaparecer($('.tutorial'));
+    desaparecer($('#form1, #form2, .form_name'));
   });
   
   $('#explore').click(function() {
