@@ -280,7 +280,8 @@ $(document).ready(function() {
         var centradorY = -Y-(centerY+187);
         desaparecer($('.name_star'));
         $('#form1').css('display', 'block');
-        $('#form2').css('display', 'none'); 
+        $('#form2').css('display', 'none');
+        $('.form_name').removeClass('big_1');
         aparecer($('.form_name'));
         TweenLite.to('.stars', 1, {top:Number(centradorY), left:Number(centradorX), ease:Power2.easeInOut});
       }else{
@@ -288,24 +289,7 @@ $(document).ready(function() {
       }
     });
 
-    $('.create_conts').on('click', function() {
-      alert("Creating Star...");
-      $('.name_net').text($('#name_input').val());
-      desaparecer($(".form_name"));
-      SaveStar();
-      
-    });
-    function SaveStar(){
-      var url = "";
-      var data = {};
-      //Listo para instalar el servicio de guardado
-      $.post(url,data,endSaveStar(data, status));
-    }
-    function endSaveStar(data, status){
-      //Animacion de explosion va aquí
-      $('#seleccionador').attr('src','assets/star.png');
-      aparecer($(".star_social"));
-    }
+    
   }
 
   $('#start').click(function() {
@@ -318,7 +302,17 @@ $(document).ready(function() {
     desaparecer($('.tutorial'));
     desaparecer($('#form1, #form2, .form_name'));
   });
-  
+  function SaveStar(){
+    var url = "";
+    var data = {};
+    //Listo para instalar el servicio de guardado
+    $.post(url,data,endSaveStar(data, status));
+  }
+  function endSaveStar(data, status){
+    //Animacion de explosion va aquí
+    $('#seleccionador').attr('src','assets/star.png');
+    aparecer($(".star_social"));
+  }
 
   $('#form2').submit(function(e) {
     e.preventDefault();
@@ -334,8 +328,11 @@ $(document).ready(function() {
     //alert($(this).validationEngine(('validate')))
     //$('#explore').click(function() {
     if ($(this).validationEngine('validate')) {
-        getConstelacion();
-    }
+        alert("Creating Star...");
+        $('.name_net').text($('#name_input').val());
+        desaparecer($(".form_name"));
+        SaveStar();
+      }
   });
 
   $('#form_child_today').submit(function(e) {
