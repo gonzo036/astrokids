@@ -224,7 +224,7 @@ header .controls_header
 {
   width: 90px;
   position: absolute;
-  left: 0;
+  left: 2;
   height: 35px;
 }
 header .controls_header .sound,
@@ -669,7 +669,7 @@ header .social a.youtube_header:hover
   position: absolute;
   top: calc(50% - 127.5px);
   left: calc(50% - 120px);
-  overflow: hidden;
+  /* overflow: hidden; */
   text-align: center;
 }
 .form_name.big_1

@@ -5,6 +5,16 @@ var posY = 0;
 var validCreation = 0;
 
 $(document).ready(function() {
+
+  // validation
+
+
+
+  // validation
+
+
+
+
   $('.bg_black').delay(700).fadeOut(700);
 
   $('.zodiac_sings li').click(
@@ -309,9 +319,34 @@ $(document).ready(function() {
     desaparecer($('#form1, #form2, .form_name'));
   });
   
-  $('#explore').click(function() {
-    getConstelacion();
+
+  $('#form2').submit(function(e) {
+    e.preventDefault();
+    //alert($(this).validationEngine(('validate')))
+    //$('#explore').click(function() {
+    if ($(this).validationEngine('validate')) {
+        getConstelacion();
+    }
   });
+
+  $('#form1').submit(function(e) {
+    e.preventDefault();
+    //alert($(this).validationEngine(('validate')))
+    //$('#explore').click(function() {
+    if ($(this).validationEngine('validate')) {
+        getConstelacion();
+    }
+  });
+
+  $('#form_child_today').submit(function(e) {
+    e.preventDefault();
+    //alert($(this).validationEngine(('validate')))
+    //$('#explore').click(function() {
+    if ($(this).validationEngine('validate')) {
+        getConstelacion();
+    }
+  });
+
 
   var allStars;
   var showStars = false;

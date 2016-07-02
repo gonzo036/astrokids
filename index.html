@@ -16,14 +16,11 @@
     <link rel="stylesheet" type="text/css" href="layoutcss/reset.css"/>
     <link rel="stylesheet" type="text/css" href="layoutcss/general.css"/>
     <link rel="stylesheet" type="text/css" href="layoutcss/fonts.css"/>
+    <link rel="stylesheet" type="text/css" href="layoutcss/validationEngine.jquery.css"/>
 
     <!-- Styles -->
 </head>
 <body>
-
-
-
-
     
     <header>
         <div class="controls_header">
@@ -315,10 +312,10 @@
         <div class="box_form_child_today">
             <div class="ball"></div>
             <p>Lorem ipsum dolor sit amet,consectetur adipiscing elit, sed do et dolore magna aliqua:</p>
-            <form action="">
-                <input type="text" placeholder="DD" class="date2">
-                <input type="text" placeholder="MM" class="date2">
-                <input type="text" placeholder="YY" class="date2">
+            <form action="" id="form_child_today" method="POST">
+                <input type="text" placeholder="DD" class="date2" class="date validate[required]">
+                <input type="text" placeholder="MM" class="date2" class="date validate[required]">
+                <input type="text" placeholder="YY" class="date2" class="date validate[required]">
                 <input type="submit" class="next_button" value="NEXT">
             </form>
         </div>
@@ -401,11 +398,11 @@
 
 
     <div class="form_name big_1" style=""><!-- big_1 para formulario de datos osea #form2-->
-        <form action="">
-            <div id="form1" style="display:none;">
+        <div action="">
+            <form id="form1" style="display:none;" method="post">
                 <img src="assets/img_form_top.png" alt="" style="visibility:hidden">
                 <label for="">Your son name:</label>
-                <input id="name_input" type=""/>
+                <input id="name_input" type="" class="validate[required] text-input"/>
                 <label class="genr" for="">Your sons genre:</label>
                 <div class="box_gen">
                     <label for="">
@@ -419,22 +416,22 @@
                         </div>                    
                     </label>
                 </div>
-                <input type="button" class="create_conts" value="CREATE star">
-            </div>
+                <input type="submit" class="create_conts" value="CREATE star">
+            </form>
 
-            <div id="form2" style="display:block;">
+            <form id="form2" style="display:block;" method="post">
                 <img src="assets/logo_1.png" class="logo" alt="">
                 <p>The Universe has the power itself of creating life. Now the power is yours! you can create a star, your sons star.</p>
                 <span class="date_birth">
                     Date birth of your son:
                 </span>
-                <input type="text" id="day" placeholder="DD" class="date" value="1">
-                <input type="text" id="month" placeholder="MM" class="date" value="1">
-                <input type="text" id="year" placeholder="YYYY" class="date" value="1980">
-                <input id="explore" type="button" class="create_conts explore" value="EXPLORE">
-            </div>
+                <input type="text" id="day" placeholder="DD" class="date validate[required,custom[integer],max[31],min[1]]" >
+                <input type="text" id="month" placeholder="MM" class="date validate[required,custom[integer],max[12],min[1]]">
+                <input type="text" id="year" placeholder="YYYY" class="date validate[required,custom[integer],max[2016],min[1940]]">
+                <input id="explore" type="submit" class="create_conts explore" value="EXPLORE">
+            </form>
 
-        </form>
+        </div>
     </div>
 
 
@@ -521,14 +518,16 @@
     <script src="js/lib/dat.gui.js"></script>
     <script src="js/lib/xRingGeometry.js"></script>
     <script src="js/lib/ParticleEngine.js"></script>
-     <script src="js/lib/GeometryUtils.js"></script>
-     <script src="js/lib/OBJLoader.js"></script>
+    <script src="js/lib/GeometryUtils.js"></script>
+    <script src="js/lib/OBJLoader.js"></script>
     <script src="js/SunMaterial.js"></script>
     <script src="js/GlowMaterial.js"></script>
     <script src="js/Examples.js"></script>
     <script src="js/general.js"></script>
     <script src="js/SolarSystem.js"></script>
     <script src="js/gui.js"></script>
+    <script src="js/jquery.validationEngine-en.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.validationEngine.js" type="text/javascript" charset="utf-8"></script>
     <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>-->
 
 
