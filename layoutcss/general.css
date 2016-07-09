@@ -1715,6 +1715,9 @@ footer #mascara{
     #xyz{
       display:none;
     }
+    #xy{
+      mix-blend-mode: normal;
+    }
     .menu_open{
       display:none;
     }
