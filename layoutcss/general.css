@@ -855,6 +855,7 @@ header .social a.youtube_header:hover
   width: 40px;
   display: inline-block;
   margin: -11px 10px 0;
+  text-align: center;
 }
 
 .form_name form input.date::-webkit-input-placeholder {
@@ -1207,6 +1208,7 @@ header .social a.youtube_header:hover
   font-size: 20px;
   padding: 0px 0 0 5px;
   text-align: left;
+  line-height: 20px;
 }
 .star_social .box_sign_name .sign
 {
@@ -1549,7 +1551,7 @@ footer .menu_close
   width: 180px;
   height: 69px; 
   position: absolute;
-  bottom: 25px;
+  bottom: 0px;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -1697,6 +1699,15 @@ footer .menu_open li.active a
 {
   color: #f8e649;
 }
+footer #mascara{
+  width: 180px;
+  height: 95px;
+  position: absolute;
+  bottom: 25px;
+  left: calc(50% - 90px);
+  overflow: hidden;
+}
+
 
 
 

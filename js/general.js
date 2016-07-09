@@ -2,7 +2,19 @@ var intervalBG = null;
 var intervalStar = null;
 var posX = 0;
 var posY = 0;
+var StarOwnerX = 0;
+var StarOwnerY = 0;
 var validCreation = 0;
+
+//Vars Center Fn
+var width = $("body").width()/2;
+var height = $("body").height()/2;
+var X = 0;
+var Y = 0;
+var posYStar;
+var posXStar;
+var centerX;
+var centerY;
 
 $(document).ready(function() {
 
@@ -17,7 +29,7 @@ $(document).ready(function() {
 
   $('.bg_black').delay(700).fadeOut(700);
 
-  $('.zodiac_sings li').click(
+  $('.zodiac_sings li').mouseover(
     function(e) {
     e.preventDefault(); // prevent the default action
     e.stopPropagation; // stop the click from bubbling
@@ -27,7 +39,7 @@ $(document).ready(function() {
   });
   
   // open menu footer
-  $('.menu_close').mouseover(function() {
+  $('.menu_close').click(function() {
     $(this).animate({'bottom': '-300'}, 400);
     $('.circle_menu_open').delay(700).fadeIn(400);
     $('.circle_menu_open').css('background', 'url(assets/item_1.png) no-repeat 0px -10px');
@@ -41,8 +53,8 @@ $(document).ready(function() {
   });
 
   // close menu footer
-  $('.menu_open').mouseleave(function() {
-    $('.menu_close').animate({'bottom': '25'}, 400);
+  $('#container').click(function() {
+    $('.menu_close').animate({'bottom': '0'}, 400);
     $('.circle_menu_open').delay(100).fadeOut(400);
     $('.item_1, .item_2, .item_3, .item_4 , .item_5').removeClass('active');
     $('.menu_open').fadeOut(400).animate({'bottom': '-100'}, 400);
@@ -96,28 +108,57 @@ $(document).ready(function() {
 
   // controls right
   var top_zodiac = 0;
-  $('.control_up').click(function() {
-    top_zodiac = top_zodiac+98;
-    if(top_zodiac>=0)top_zodiac=0;
-    $('.zodiac_sings').animate({'margin-top': top_zodiac}, 400);
-  });
-  $('.control_down').click(function() {
+  var valid_anim = 0;
+  
+  var interval1
 
-    top_zodiac = top_zodiac-98;
-    if(top_zodiac<=-784)top_zodiac=-784;
-    $('.zodiac_sings').animate({'margin-top': top_zodiac}, 400);
+  function animUP(){
+    if(valid_anim == 0){
+      top_zodiac = top_zodiac+98;
+      if(top_zodiac>=0)top_zodiac=0;
+      $('.zodiac_sings').animate({'margin-top': top_zodiac}, 600);
+    }
+  }
+  function animDown(){
+    if(valid_anim == 0){
+      top_zodiac = top_zodiac-98;
+      if(top_zodiac<=-784)top_zodiac=-784;
+      $('.zodiac_sings').animate({'margin-top': top_zodiac}, 600);
+    }
+  }
+  $('.control_up').mouseenter(function() {
+    valid_anim = 0;
+    animUP();
+    interval1 = setInterval(function(){
+      animUP();
+    },600,true);
     
+  });
+  $('.control_up').mouseleave(function() {
+    valid_anim = 1;
+    clearInterval(interval1);
+  });
+  $('.control_down').mouseenter(function() {
+    valid_anim = 0;
+    animDown();
+    interval1 = setInterval(function(){
+      animDown();
+    },600,true);
+  });
+  $('.control_down').mouseleave(function() {
+    valid_anim = 1;
+    clearInterval(interval1);
   });
   // Open Zodiac
 
-  $('.zodiac_button').mouseover(function() {
+  $('.zodiac_button').click(function() {
     $(this).animate({'margin-left': '300'}, 400);
     $('.control_up').css('display', 'block').animate({'margin-left': '10'}, 400);
     $('.control_down').css('display', 'block').animate({'margin-left': '10'}, 400);
     $('.content_zodiac_sings').css('display', 'block').animate({'margin-left': '0'}, 400);
   });
 
-  $('.controls_right').mouseleave(function() {
+  $('#container').click(function() {
     $('.zodiac_button').animate({'margin-left': '0'}, 400);
     $('.control_up').css('display', 'block').animate({'margin-left': '300'}, 400);
     $('.control_down').css('display', 'block').animate({'margin-left': '300'}, 400);
@@ -140,6 +181,15 @@ $(document).ready(function() {
     posY = event.pageY;
     
   });
+  window.addEventListener("touchstart", function(event){
+    console.log(event.touches); // good
+  });
+  window.addEventListener("touchmove", function(event){
+    event.preventDefault();
+    posX = event.targetTouches[0].pageX;
+    posY = event.targetTouches[0].pageY;
+  });
+
     
   intervalBG = setInterval(function(){
     pX = 2000;
@@ -157,6 +207,7 @@ $(document).ready(function() {
     $('#x').css('backgroundPosition', String(X3+"px "+Y3+"px"));
 
   }, 30);
+  var signo_actual;
   var signosJson ={
     "signos":[
         {"Nombre":"Aquarius","MesInicio":"0" , "DiaInicio":"21","DiaFinal":"18","Constelacion":"aurora01.jpg"}, 
@@ -187,13 +238,21 @@ $(document).ready(function() {
       var signo = signosJson.signos[month-1];
       if( signo.DiaInicio > day)
       signo = signosJson.signos[(month+12-2)%12];
-      $("#date_const").text(String(validMonth(signo.MesInicio))+" "+String(signo.DiaInicio)+" / "+String(validMonth(Number(signo.MesInicio)+1))+" "+String(signo.DiaFinal))
+      signo_actual = Number(signo.MesInicio);
+      $("#date_const").text(String(validMonth(signo_actual))+" "+String(signo.DiaInicio)+" / "+String(validMonth(Number(signo_actual)+1))+" "+String(signo.DiaFinal))
       $("#name_const").text(String(signo.Nombre)+" Constellation");
       $('.sign_net').text(String(signo.Nombre));
 
       TweenLite.to(".form_name", 1, {opacity:"0", ease:Power2.easeInOut, onComplete:function(){$('.form_name').css('display', 'none');}});
       $('.tutorial').css('display', 'block');
       TweenLite.to(".tutorial", 1, {opacity:"1", ease:Power2.easeInOut, onComplete:Tutorial});
+      //Update paara servicio
+      signo_actual = Number(signo_actual-1);
+      if(signo_actual == -1){
+        signo_actual = 11
+      }else if(signo_actual == 0){
+        signo_actual = 12
+      };
 
   }
   function validMonth(month){
@@ -220,22 +279,24 @@ $(document).ready(function() {
       //Al final de la carga de las estrellas se presenta el universo
       
   }
+  function Centrador(object){
+
+
+
+    var centradorX = -X-centerX;
+    var centradorY = -Y-(centerY+187);
+
+  }
   function Crear(){
     TweenLite.to("#fondo_preload", 1, {opacity:0, onComplete:function(){clearInterval(intervalBG);$('#fondo_preload').css('display', 'none');}});
     desaparecer($(".constelaciones"));
     aparecer($(".name_star")); 
     aparecer($(".stars"));
-    
-    var width = $("body").width()/2;
-    var height = $("body").height()/2;
+  
+    width = $("body").width()/2;
+    height = $("body").height()/2;
 
     $('.coords').css('display', 'block');
-    var X = 0;
-    var Y = 0;
-    var posYStar;
-    var posXStar;
-    var centerX;
-    var centerY;
     function intervalStar(){
       intervalStar = setInterval(function(){ 
         
@@ -245,17 +306,24 @@ $(document).ready(function() {
         centerX = (posX-width)
         centerY =(posY-height)
 
-        X = Number(Number((posX-width))/100)+X;
-        Y = Number(Number((posY-height))/100)+Y;
+        
 
         TweenLite.to(".name_star", 0.1, {top:posYStar, left:posXStar, ease:Power2.easeInOut});
-        $('body').css('backgroundPosition', String(Number(-X)+"px "+Number(-Y)+"px"));
-        if(X<=-1000) X=-1000;
-        if(X>=1000) X=1000;
-        if(Y<=-1000) Y=-1000;
-        if(Y>=1000) Y=1000;
-        $('.stars').css('top', String(-Y+"px"));
-        $('.stars').css('left', String(-X+"px"));
+        
+        //TweenLite.to("body", 0.1, {backgroundPosition:String(Number(-X)+"px "+Number(-Y)+"px"), ease:Power2.easeInOut});
+
+        if(centerX <= -200 || centerX >= 200 || centerY <= -200 || centerY >= 200){
+          X = Number(Number((posX-width))/80)+X;
+          Y = Number(Number((posY-height))/80)+Y;
+          if(X<=-1000) X=-1000;
+          if(X>=1000) X=1000;
+          if(Y<=-1000) Y=-1000;
+          if(Y>=1000) Y=1000;
+          $('body').css('backgroundPosition', String(Number(-X+200)+"px "+Number(-Y+200)+"px"));
+          TweenLite.to(".stars", 0.1, {top:String(-Number(Y+200)+"px"), left:String(-Number(X+200)+"px"), ease:Power2.easeInOut});
+        }
+        //$('.stars').css('top', String(-Y+"px"));
+        //$('.stars').css('left', String(-X+"px"));
           
       }, 20);
     }
@@ -264,18 +332,18 @@ $(document).ready(function() {
       if(validCreation ==0){
         $(this).off('click');
         $('body').on('click', function() {
-          /*
+          
           clearInterval(intervalStar);
           desaparecer($('.form_name'));
           $( ".owner" ).remove();
           Crear();
-          */
+          
         });
         clearInterval(intervalStar);
         var stars = $('.stars');
-        var StarOwnerX = Number(X+posXStar);
-        var StarOwnerY = Number(Y+posYStar);
-        stars.append('<div class="star owner" style="left: '+ StarOwnerX + 'px; top:'+  StarOwnerY + 'px; display: block; position: absolute;"><img id="seleccionador" src="assets/img_form_top.png" alt=""><spam></><spam></p></div>');
+        StarOwnerX = Number(X+posXStar);
+        StarOwnerY = Number(Y+posYStar);
+        stars.append('<div class="star owner" position_x="'+ StarOwnerX + '" position_y="'+ StarOwnerY + '" style="left: '+ StarOwnerX + 'px; top:'+  StarOwnerY + 'px; display: block; position: absolute;"><img id="seleccionador" src="assets/img_form_top.png" alt=""><spam></><spam></p></div>');
         var centradorX = -X-centerX;
         var centradorY = -Y-(centerY+187);
         desaparecer($('.name_star'));
@@ -303,13 +371,25 @@ $(document).ready(function() {
     desaparecer($('#form1, #form2, .form_name'));
   });
   function SaveStar(){
-    var url = "";
-    var data = {};
+    var day = parseInt($('#day').val());
+    var month = parseInt($('#month').val());
+    var year =  parseInt($('#year').val());
+    var name = String($('#name_input').val());
+    var url = "http://stars.360astrokids.com/api/v1/constellations/"+signo_actual+"/stars";
+    var data = {
+        "name": String(name),
+        "position_x": Number(StarOwnerX),
+        "position_y": Number(StarOwnerY),
+        "date_birth": String(year+"-"+month+"-"+day),
+        "color": "red",
+        "size": "M"
+    };
     //Listo para instalar el servicio de guardado
     $.post(url,data,endSaveStar(data, status));
   }
   function endSaveStar(data, status){
     //Animacion de explosion va aquí
+    console.log(JSON.stringify(data)+" "+status);
     $('#seleccionador').attr('src','assets/star.png');
     aparecer($(".star_social"));
   }
@@ -352,20 +432,24 @@ $(document).ready(function() {
       var stars = $('.stars')
       var colors = ['color-blue','color-orange','color-purple','color-red','color-green','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color'];
       var sizes = ['age-one','age-two','age-three','age-four','age-five','age-six','age-seven'];
-
-      var url_stars = "http://stars.3dementes.com/api/v1/constellations/1/stars";
-      $.get( "http://dits.crtvcontent.com/stars").done(function( data ) {
+      var url_stars = "http://stars.360astrokids.com/api/v1/constellations/"+signo_actual+"/stars";
+      alert(url_stars);
+      $.get(url_stars).done(function( data ) {
         //Fin constelaciones
         Crear();
         showStars = true;
-        allStars = data;
-        allStars.length = 10;
-        for(i= 0;i<allStars.length;++i){
-          var posx = data[i].x % 2000;
-          var posy = data[i].y % 2000;
-          stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;"><img  src="assets/star_u.png" alt=""><p>'+data[i].name+'</p></div>')
+        allStars = data.stars;
+        alert(data.stars);
+        //***limitador***
+        //allStars.length = 10;
+        if(allStars.length >=0){
+          for(i= 0;i<allStars.length;++i){
+            var posx = allStars[i].position_x % 2000;
+            var posy = allStars[i].position_y % 2000;
+            stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;"><img  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>')
+          }
+          loadEventsStars();
         }
-        loadEventsStars();
       });
     };
     //Carga de eventos para las estrellas
