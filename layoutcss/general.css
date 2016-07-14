@@ -1056,7 +1056,9 @@ header .social a.youtube_header:hover
   display: block;
 }
 
-
+.constellation_img{
+  display:none;
+}
 
 .constelaciones
 {
@@ -1073,9 +1075,9 @@ header .social a.youtube_header:hover
 }
 .constelaciones img
 {
-  width: 72%;
+  width: 82%;
   height: auto;
-  margin: 50px 0 60px 0;
+  margin: 28px 33px;
 }
 .constelaciones .text_constelaciones
 {
