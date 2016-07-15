@@ -145,6 +145,37 @@ body
   opacity: 0;
 }
 
+.star_color1{
+  -webkit-filter : hue-rotate(60deg);
+  filter : hue-rotate(60deg);
+  width: 32px !important;
+  height: 32px !important;
+}
+.star_color2{
+  -webkit-filter : hue-rotate(120deg);
+  filter : hue-rotate(120deg);
+  width: 29px !important;
+  height: 29px !important;
+}
+.star_color3{
+  -webkit-filter : hue-rotate(180deg);
+  filter : hue-rotate(180deg);
+  width: 26px !important;
+  height: 26px !important;
+}
+.star_color4{
+  -webkit-filter : hue-rotate(240deg);
+  filter : hue-rotate(240deg);
+  width: 23px !important;
+  height: 23px !important;
+}
+.star_color5{
+  -webkit-filter : hue-rotate(300deg);
+  filter : hue-rotate(300deg);
+  width: 20px !important;
+  height: 20px !important;
+
+}
 
 
 

@@ -5,6 +5,7 @@ var posY = 0;
 var StarOwnerX = 0;
 var StarOwnerY = 0;
 var validCreation = 0;
+var signo_actual;
 
 //Vars Center Fn
 var width = $("body").width()/2;
@@ -17,6 +18,42 @@ var centerX;
 var centerY;
 
 $(document).ready(function() {
+
+  /********** Validacion URL *********/
+
+  var $_GET = {};
+  if(document.location.toString().indexOf('?') !== -1) {
+      var query = document.location
+                     .toString()
+                     // get the query string
+                     .replace(/^.*?\?/, '')
+                     // and remove any existing hash string (thanks, @vrijdenker)
+                     .replace(/#.*$/, '')
+                     .split('&');
+
+      for(var i=0, l=query.length; i<l; i++) {
+         var aux = decodeURIComponent(query[i]).split('=');
+         $_GET[aux[0]] = aux[1];
+      }
+  }
+  //get the 'index' query parameter
+
+  if($_GET['c'] != undefined || $_GET['s'] != undefined){
+    alert($_GET['c']+" "+$_GET['s']);
+    signo_actual = Number($_GET['c']);
+    link_clear($_GET['s']);
+  };
+
+
+
+
+
+
+
+
+
+
+
 
 
   $('.bg_black').delay(700).fadeOut(700);
@@ -239,7 +276,7 @@ $(document).ready(function() {
     intervalBG = requestAnimationFrame(intervalBGFn);
   }
   intervalBG = requestAnimationFrame(intervalBGFn);
-  var signo_actual;
+  
   var signosJson ={
     "signos":[
         {"Nombre":"Aquarius","MesInicio":"0" , "DiaInicio":"21","DiaFinal":"18","Constelacion":"aurora01.jpg"}, 
@@ -389,7 +426,26 @@ $(document).ready(function() {
     hide_fn($('.constelaciones'));
     hide_fn($('.tutorial'));
     hide_fn($('#form1, #form2, .form_name'));
+    hide_fn($('.name_star'));
+    $('body').css('cursor', 'default');
+    $('input, #start').css('cursor', 'default');
+    
   });
+
+
+  function link_clear(id) {
+    $('.logo, .social').animate({'top': '0'}, 500);
+    hide_fn($('.stars'));
+    hide_fn($('.star_social'));
+    hide_fn($('.constelaciones'));
+    hide_fn($('.tutorial'));
+    hide_fn($('#form1, #form2, .form_name'));
+    hide_fn($('.name_star'));
+    loadStar(id);
+    //$('body').css('cursor', 'default');
+    //$('input, #start').css('cursor', 'default');
+    
+  };
   function SaveStar(){
     var day = parseInt($('#day').val());
     var month = parseInt($('#month').val());
@@ -438,11 +494,10 @@ $(document).ready(function() {
     }
   });
 
-
   var allStars;
   var showStars = false;
 
-  function loadStar(){
+  function loadStar(star_id=null){
       var stars = $('.stars')
       var colors = ['color-blue','color-orange','color-purple','color-red','color-green','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color'];
       var sizes = ['age-one','age-two','age-three','age-four','age-five','age-six','age-seven'];
@@ -458,7 +513,18 @@ $(document).ready(function() {
           for(i= 0;i<allStars.length;++i){
             var posx = allStars[i].position_x % 2000;
             var posy = allStars[i].position_y % 2000;
-            stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'"><img  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>')
+            if(star_id != undefined){
+              if(star_id==i){
+                $('#form1').css('display', 'block');
+                $('#form2').css('display', 'none');
+                $('.form_name').removeClass('big_1');
+                show_fn($('.form_name'));
+                //Center_fn();
+                stars.append('<div class="star owner" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" id="star'+i+'"><img  class="star_color'+Math.floor(Math.random() * 5)+'" src="assets/star.png" alt=""><p>'+allStars[i].name+'</p></div>');
+              }
+            }
+            stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" id="star'+i+'"><img  class="star_color'+Math.floor(Math.random() * 5)+'"  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>');
+            
           }
           loadEventsStars();
         }
@@ -475,7 +541,7 @@ $(document).ready(function() {
         $(this).children('p').animate({'opacity': '0'}, 200);
       });
       $('.star').click(function() {
-        alert($(this).attr("position_x"))
+        alert($(this).attr("id"))
       });
     }
 
