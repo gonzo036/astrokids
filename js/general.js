@@ -39,21 +39,9 @@ $(document).ready(function() {
   //get the 'index' query parameter
 
   if($_GET['c'] != undefined || $_GET['s'] != undefined){
-    alert($_GET['c']+" "+$_GET['s']);
     signo_actual = Number($_GET['c']);
     link_clear($_GET['s']);
   };
-
-
-
-
-
-
-
-
-
-
-
 
 
   $('.bg_black').delay(700).fadeOut(700);
@@ -343,15 +331,25 @@ $(document).ready(function() {
       show_fn($(".constelaciones"));
       TweenLite.to('body', 10, { onComplete:loadStar});
   }
-  function Center_fn(object=null, fn=null){
-    var centradorX = -X-centerX;
-    var centradorY = -Y-(centerY+187);
+  function Center_fn(x_link = null, y_link = null, fn=null){
+    var centradorX;
+    var centradorY;
+    if(x_link != null){
+      centradorX = -Number(x_link)-centerX;
+      centradorY = -Number(y_link)-(centerY+187);
+    }else{
+      centradorX = -X-centerX;
+      centradorY = -Y-(centerY+187);
+    }
+
     X = -centradorX;
     Y = -centradorY;
-
     TweenLite.to('body', 1, { css:{'backgroundPosition': String(Number(centradorX) + "px "+ Number(centradorY) + "px")}, ease:Power2.easeInOut, onComplete:fn});
     TweenLite.to('.stars', 1, {top:Number(centradorY), left:Number(centradorX), ease:Power2.easeInOut, onComplete:fn});
     
+  }
+  function Social_fn(){
+
   }
   function Create_fn(){
     TweenLite.to("#fondo_preload", 1, {opacity:0, onComplete:function(){cancelAnimationFrame(intervalBG);$('#fondo_preload').css('display', 'none');}});
@@ -365,9 +363,6 @@ $(document).ready(function() {
     var limX = Math.round(width/3);
     var limY = Math.round(height/3);
 
-    //X = parseInt($('.stars').css("left"),10);
-    //Y = parseInt($('.stars').css("top"),10);
-
     $('.coords').css('display', 'block');
 
     function intervalStarFn(){
@@ -380,8 +375,6 @@ $(document).ready(function() {
         if(Y<=-4000) Y=-4000;
         if(Y>=4000) Y=4000;
       }
-      
-      //TweenLite.to(".stars", 0.3, {top:String(-Number(Y)+"px"), left:String(-Number(X)+"px"), ease:Power2.easeInOut});
       $('body').css('backgroundPosition', String(Number(-X)+"px "+Number(-Y)+"px"));
       $('.stars').css('top', String(-Y+"px"));
       $('.stars').css('left', String(-X+"px"));
@@ -394,6 +387,8 @@ $(document).ready(function() {
     });
     intervalStarFn();
     $('body').on('click', function() {
+      $( ".owner" ).remove();
+
       if(validCreation ==0){
         $(this).off('click');
         $('body').on('click', function() {
@@ -414,6 +409,12 @@ $(document).ready(function() {
         $('#form2').css('display', 'none');
         $('.form_name').removeClass('big_1');
         show_fn($('.form_name'));
+        hide_fn($('.star_social'));
+        Center_fn();
+      }else{
+        cancelAnimationFrame(intervalStar);
+        hide_fn($('.form_name'));
+        show_fn($('.star_social'));
         Center_fn();
       }
     });
@@ -436,16 +437,19 @@ $(document).ready(function() {
   //Cleaner via GET
   function link_clear(id) {
     $('.logo, .social').animate({'top': '0'}, 500);
-    hide_fn($('.stars'));
-    hide_fn($('.star_social'));
     hide_fn($('.constelaciones'));
     hide_fn($('.tutorial'));
     hide_fn($('#form1, #form2, .form_name'));
     hide_fn($('.name_star'));
+    
+    show_fn($('#form1'));
+    
+    hide_fn($('.form_name'));
+    show_fn($('.star_social'));
+
     loadStar(id);
     //$('body').css('cursor', 'default');
     //$('input, #start').css('cursor', 'default');
-    
   };
   function SaveStar(){
     var day = parseInt($('#day').val());
@@ -453,28 +457,27 @@ $(document).ready(function() {
     var year =  parseInt($('#year').val());
     var name = String($('#name_input').val());
     var url = "http://stars.360astrokids.com/api/v1/constellations/"+signo_actual+"/stars";
+    var rand_class = Math.floor(Math.random() * 11)
     var data = {
         "name": String(name),
         "position_x": Number(StarOwnerX),
         "position_y": Number(StarOwnerY),
         "date_birth": String(year+"-"+month+"-"+day),
         "color": "red",
-        "size": "M"
+        "size": rand_class
     };
-    //Listo para instalar el servicio de guardado
+    $('.owner img').addClass(String("star_color"+rand_class))
     $.post(url,data,endSaveStar(data, status));
   }
   function endSaveStar(data, status){
     //Animacion de explosion va aquí
     $('.owner p').text(String($('#name_input').val()));
-
+    $('#name_input').val("");
     loadEventsStars();
-    //
     show_fn($('.star_born'));
     TweenLite.to('.star_born', 1, {opacity:"0", delay:1.3, ease:Power2.easeInOut, onComplete:function(){$('.star_born').css('display', 'none');}});
     TweenLite.from('.seleccionador', 1, {opacity:"0", delay:2.3, ease:Power2.easeInOut, onComplete:function(){$('.star_born').removeClass('star_born');}});
 
-    
     console.log(JSON.stringify(data)+" "+status);
     $('.seleccionador').attr('src','assets/star.png');
     //Deactive classes from create star
@@ -520,6 +523,8 @@ $(document).ready(function() {
       Create_fn();
       showStars = true;
       allStars = data.stars;
+      var x_link;
+      var y_link;
       //***limitador***
       //allStars.length = 10;
       if(allStars.length >=0){
@@ -529,13 +534,15 @@ $(document).ready(function() {
           var rand_class = Math.floor(Math.random() * 11)
           if(star_id != undefined || star_id != null){
             if(star_id==i){
-              $('#form1').css('display', 'block');
-              $('#form2').css('display', 'none');
-              $('.form_name').removeClass('big_1');
-              show_fn($('.form_name'));
-              //Center_fn();
-              var append_star_owner = '<div class="star owner" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" name="'+ allStars[i].name +'" id="star'+i+'"><img  class="star_color'+rand_class+'" src="assets/star.png" alt=""><p>'+allStars[i].name+'</p></div>';
+              cancelAnimationFrame(intervalStar);
+              hide_fn($('.form_name'));
+              show_fn($('.star_social'));
+              $('.name_net').text(allStars[i].name);
+              var append_star_owner = '<div class="star link" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" name="'+ allStars[i].name +'" id="star'+i+'"><img  class="star_color'+rand_class+'" src="assets/star.png" alt=""><p>'+allStars[i].name+'</p></div>';
               stars.append(append_star_owner );
+              x_link = Number(posx);
+              y_link = Number(posy);
+
             }else{
               stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" name="'+ allStars[i].name +'" id="star'+i+'"><img  class="star_color'+rand_class+'"  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>');
             }
@@ -544,6 +551,7 @@ $(document).ready(function() {
           }     
         }
         loadEventsStars();
+        //Center_fn(x_link,y_link);
       }
     });
   };
@@ -562,10 +570,9 @@ $(document).ready(function() {
       $(this).children('p').animate({'opacity': '0'}, 200);
     });
     $('.star').click(function() {
-      show_fn($('.star_social'));
-      Center_fn();
-      alert("You are trying over another star! Please move");
       var name_t = $(this).attr("name");
+      var posX = $(this).attr("name");
+      var posY = $(this).attr("name");
       $('.name_net').text(name_t);
     });
   }
