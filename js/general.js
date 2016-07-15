@@ -348,13 +348,10 @@ $(document).ready(function() {
     var centradorY = -Y-(centerY+187);
     X = -centradorX;
     Y = -centradorY;
+
+    TweenLite.to('body', 1, { css:{'backgroundPosition': String(Number(centradorX) + "px "+ Number(centradorY) + "px")}, ease:Power2.easeInOut, onComplete:fn});
     TweenLite.to('.stars', 1, {top:Number(centradorY), left:Number(centradorX), ease:Power2.easeInOut, onComplete:fn});
-    //$('body').animate({'backgroundPosition', String(Number(-centradorX) + "px " + Number(-centradorY) + "px")}, 1000);
-  }
-  function Center_fn_return(object=null, fn=null){
-    top_t = $(".stars").css("top");
-    left_t = $(".stars").css("left");
-    TweenLite.to(".stars", 0.4, {top:String(-Number(Y)+"px"), left:String(-Number(X)+"px"), ease:Power2.easeInOut, onComplete:fn});
+    
   }
   function Create_fn(){
     TweenLite.to("#fondo_preload", 1, {opacity:0, onComplete:function(){cancelAnimationFrame(intervalBG);$('#fondo_preload').css('display', 'none');}});
@@ -406,7 +403,6 @@ $(document).ready(function() {
           //show_fn($('.name_star'));
           $( ".owner" ).remove();
           Create_fn();
-          //Center_fn_return(null,Create_fn)
         });
         cancelAnimationFrame(intervalStar);
        
