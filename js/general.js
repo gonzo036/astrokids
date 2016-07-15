@@ -397,6 +397,7 @@ $(document).ready(function() {
         $('body').on('click', function() {
           cancelAnimationFrame(intervalStar);
           hide_fn($('.form_name'));
+          hide_fn($('.star_social'));
           //show_fn($('.name_star'));
           $( ".owner" ).remove();
           Center_fn_return(null,Create_fn)
@@ -406,7 +407,7 @@ $(document).ready(function() {
         var stars = $('.stars');
         StarOwnerX = Number(X+posXStar);
         StarOwnerY = Number(Y+posYStar);
-        stars.append('<div class="star owner" position_x="'+ StarOwnerX + '" position_y="'+ StarOwnerY + '" style="left: '+ StarOwnerX + 'px; top:'+  StarOwnerY + 'px; display: block; position: absolute;"><img id="seleccionador" src="assets/img_form_top.png" alt=""><spam></><spam></p></div>');
+        stars.append('<div class="star owner" position_x="'+ StarOwnerX + '" position_y="'+ StarOwnerY + '" style="left: '+ StarOwnerX + 'px; top:'+  StarOwnerY + 'px; display: block; position: absolute;"><img class="star_born" src="assets/star_born.gif" alt=""><img class="seleccionador" src="assets/img_form_top.png" alt=""><spam></><spam></p></div>');
         $('#form1').css('display', 'block');
         $('#form2').css('display', 'none');
         $('.form_name').removeClass('big_1');
@@ -465,8 +466,19 @@ $(document).ready(function() {
   }
   function endSaveStar(data, status){
     //Animacion de explosion va aquí
+
+    //
+    show_fn($('.star_born'));
+    TweenLite.to('.star_born', 1, {opacity:"0", delay:1.3, ease:Power2.easeInOut, onComplete:function(){$('.star_born').css('display', 'none');}});
+    
+    TweenLite.from('.seleccionador', 1, {opacity:"0", delay:2.3, ease:Power2.easeInOut, onComplete:function(){$('.star_born').css('display', 'none');}});
+
+    
     console.log(JSON.stringify(data)+" "+status);
-    $('#seleccionador').attr('src','assets/star.png');
+    $('.seleccionador').attr('src','assets/star.png');
+    //Deactive classes from create star
+    $('.owner').removeClass('owner');
+    $('.seleccionador').removeClass('seleccionador');
     show_fn($(".star_social"));
   }
 

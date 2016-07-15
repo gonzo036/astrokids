@@ -176,6 +176,16 @@ body
   height: 20px !important;
 
 }
+.star_born{
+  mix-blend-mode: exclusion;
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  left: -52px;
+  top: -52px;
+  opacity: 0;
+  display: none;
+}
 
 
 
