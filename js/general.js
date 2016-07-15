@@ -247,6 +247,8 @@ $(document).ready(function() {
     centerY =(posY-height) 
 
     TweenLite.to(".name_star", 0.1, {top:posYStar, left:posXStar, ease:Power2.easeInOut});
+
+    $(".coords").text(String(X+":"+Y+"/n "+centerX+":"+centerY))
     
   });
   window.addEventListener("touchstart", function(event){
@@ -344,7 +346,10 @@ $(document).ready(function() {
   function Center_fn(object=null, fn=null){
     var centradorX = -X-centerX;
     var centradorY = -Y-(centerY+187);
+    X = -centradorX;
+    Y = -centradorY;
     TweenLite.to('.stars', 1, {top:Number(centradorY), left:Number(centradorX), ease:Power2.easeInOut, onComplete:fn});
+    //$('body').animate({'backgroundPosition', String(Number(-centradorX) + "px " + Number(-centradorY) + "px")}, 1000);
   }
   function Center_fn_return(object=null, fn=null){
     top_t = $(".stars").css("top");
@@ -378,7 +383,7 @@ $(document).ready(function() {
         if(Y<=-4000) Y=-4000;
         if(Y>=4000) Y=4000;
       }
-      $(".coords").text(String(X+":"+Y))
+      
       //TweenLite.to(".stars", 0.3, {top:String(-Number(Y)+"px"), left:String(-Number(X)+"px"), ease:Power2.easeInOut});
       $('body').css('backgroundPosition', String(Number(-X)+"px "+Number(-Y)+"px"));
       $('.stars').css('top', String(-Y+"px"));
@@ -400,21 +405,20 @@ $(document).ready(function() {
           hide_fn($('.star_social'));
           //show_fn($('.name_star'));
           $( ".owner" ).remove();
-          Center_fn_return(null,Create_fn)
+          Create_fn();
+          //Center_fn_return(null,Create_fn)
         });
         cancelAnimationFrame(intervalStar);
        
         var stars = $('.stars');
         StarOwnerX = Number(X+posXStar);
         StarOwnerY = Number(Y+posYStar);
-        stars.append('<div class="star owner" position_x="'+ StarOwnerX + '" position_y="'+ StarOwnerY + '" style="left: '+ StarOwnerX + 'px; top:'+  StarOwnerY + 'px; display: block; position: absolute;"><img class="star_born" src="assets/star_born.gif" alt=""><img class="seleccionador" src="assets/img_form_top.png" alt=""><spam></><spam></p></div>');
+        stars.append('<div class="star owner" position_x="'+ StarOwnerX + '" position_y="'+ StarOwnerY + '" style="left: '+ StarOwnerX + 'px; top:'+  StarOwnerY + 'px; display: block; position: absolute;"><img class="star_born" src="assets/star_born.gif" alt=""><img class="seleccionador" src="assets/img_form_top.png" alt=""><p>prueba</p></div>');
         $('#form1').css('display', 'block');
         $('#form2').css('display', 'none');
         $('.form_name').removeClass('big_1');
         show_fn($('.form_name'));
         Center_fn();
-      }else{
-        alert("You are trying over another star! Please move");
       }
     });
   }
@@ -433,7 +437,7 @@ $(document).ready(function() {
     
   });
 
-
+  //Cleaner via GET
   function link_clear(id) {
     $('.logo, .social').animate({'top': '0'}, 500);
     hide_fn($('.stars'));
@@ -466,12 +470,13 @@ $(document).ready(function() {
   }
   function endSaveStar(data, status){
     //Animacion de explosion va aquí
+    $('.owner p').text(String($('#name_input').val()));
 
+    loadEventsStars();
     //
     show_fn($('.star_born'));
     TweenLite.to('.star_born', 1, {opacity:"0", delay:1.3, ease:Power2.easeInOut, onComplete:function(){$('.star_born').css('display', 'none');}});
-    
-    TweenLite.from('.seleccionador', 1, {opacity:"0", delay:2.3, ease:Power2.easeInOut, onComplete:function(){$('.star_born').css('display', 'none');}});
+    TweenLite.from('.seleccionador', 1, {opacity:"0", delay:2.3, ease:Power2.easeInOut, onComplete:function(){$('.star_born').removeClass('star_born');}});
 
     
     console.log(JSON.stringify(data)+" "+status);
@@ -510,52 +515,64 @@ $(document).ready(function() {
   var showStars = false;
 
   function loadStar(star_id=null){
-      var stars = $('.stars')
-      var colors = ['color-blue','color-orange','color-purple','color-red','color-green','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color'];
-      var sizes = ['age-one','age-two','age-three','age-four','age-five','age-six','age-seven'];
-      var url_stars = "http://stars.360astrokids.com/api/v1/constellations/"+signo_actual+"/stars";
-      $.get(url_stars).done(function( data ) {
-        //Fin constelaciones
-        Create_fn();
-        showStars = true;
-        allStars = data.stars;
-        //***limitador***
-        //allStars.length = 10;
-        if(allStars.length >=0){
-          for(i= 0;i<allStars.length;++i){
-            var posx = allStars[i].position_x % 2000;
-            var posy = allStars[i].position_y % 2000;
-            if(star_id != undefined){
-              if(star_id==i){
-                $('#form1').css('display', 'block');
-                $('#form2').css('display', 'none');
-                $('.form_name').removeClass('big_1');
-                show_fn($('.form_name'));
-                //Center_fn();
-                stars.append('<div class="star owner" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" id="star'+i+'"><img  class="star_color'+Math.floor(Math.random() * 5)+'" src="assets/star.png" alt=""><p>'+allStars[i].name+'</p></div>');
-              }
+    var stars = $('.stars')
+    var colors = ['color-blue','color-orange','color-purple','color-red','color-green','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color','color-no-color'];
+    var sizes = ['age-one','age-two','age-three','age-four','age-five','age-six','age-seven'];
+    var url_stars = "http://stars.360astrokids.com/api/v1/constellations/"+signo_actual+"/stars";
+    $.get(url_stars).done(function( data ) {
+      //Fin constelaciones
+      Create_fn();
+      showStars = true;
+      allStars = data.stars;
+      //***limitador***
+      //allStars.length = 10;
+      if(allStars.length >=0){
+        for(i= 0;i<allStars.length;++i){
+          var posx = allStars[i].position_x % 2000;
+          var posy = allStars[i].position_y % 2000;
+          var rand_class = Math.floor(Math.random() * 11)
+          if(star_id != undefined || star_id != null){
+            if(star_id==i){
+              $('#form1').css('display', 'block');
+              $('#form2').css('display', 'none');
+              $('.form_name').removeClass('big_1');
+              show_fn($('.form_name'));
+              //Center_fn();
+              var append_star_owner = '<div class="star owner" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" name="'+ allStars[i].name +'" id="star'+i+'"><img  class="star_color'+rand_class+'" src="assets/star.png" alt=""><p>'+allStars[i].name+'</p></div>';
+              stars.append(append_star_owner );
+            }else{
+              stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" name="'+ allStars[i].name +'" id="star'+i+'"><img  class="star_color'+rand_class+'"  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>');
             }
-            stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" id="star'+i+'"><img  class="star_color'+Math.floor(Math.random() * 5)+'"  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>');
-            
-          }
-          loadEventsStars();
+          }else{
+            stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'" name="'+ allStars[i].name +'" id="star'+i+'"><img  class="star_color'+rand_class+'"  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>');
+          }     
         }
-      });
-    };
-    //Carga de eventos para las estrellas
-    function loadEventsStars(){
-      $('.star').mouseover(function() {
-        validCreation = 1;
-        $(this).children('p').animate({'opacity': '1'}, 200);
-      });
-      $('.star').mouseleave(function() {
-        validCreation = 0;
-        $(this).children('p').animate({'opacity': '0'}, 200);
-      });
-      $('.star').click(function() {
-        alert($(this).attr("id"))
-      });
-    }
+        loadEventsStars();
+      }
+    });
+  };
+  //Carga de eventos para las estrellas
+  function loadEventsStars(){
+    //Eliminamos los handlers anteriores
+    $('.star').off('mouseover');
+    $('.star').off('mouseleave');
+    $('.star').off('click');
+    $('.star').mouseover(function() {
+      validCreation = 1;
+      $(this).children('p').animate({'opacity': '1'}, 200);
+    });
+    $('.star').mouseleave(function() {
+      validCreation = 0;
+      $(this).children('p').animate({'opacity': '0'}, 200);
+    });
+    $('.star').click(function() {
+      show_fn($('.star_social'));
+      Center_fn();
+      alert("You are trying over another star! Please move");
+      var name_t = $(this).attr("name");
+      $('.name_net').text(name_t);
+    });
+  }
 
 });
 

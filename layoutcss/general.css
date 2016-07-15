@@ -152,34 +152,69 @@ body
   height: 32px !important;
 }
 .star_color2{
+  -webkit-filter : hue-rotate(54deg)
+  filter : hue-rotate(300deg);
+  width: 32px !important;
+  height: 32px !important;
+
+}
+.star_color3{
   -webkit-filter : hue-rotate(120deg);
   filter : hue-rotate(120deg);
   width: 29px !important;
   height: 29px !important;
 }
-.star_color3{
+.star_color4{
+  -webkit-filter : hue-rotate(54deg)
+  filter : hue-rotate(300deg);
+  width: 29px !important;
+  height: 29px !important;
+
+}
+.star_color5{
   -webkit-filter : hue-rotate(180deg);
   filter : hue-rotate(180deg);
   width: 26px !important;
   height: 26px !important;
 }
-.star_color4{
+.star_color6{
+  -webkit-filter : hue-rotate(54deg)
+  filter : hue-rotate(300deg);
+  width: 26px !important;
+  height: 26px !important;
+
+}
+.star_color7{
   -webkit-filter : hue-rotate(240deg);
   filter : hue-rotate(240deg);
   width: 23px !important;
   height: 23px !important;
 }
-.star_color5{
+.star_color8{
+  -webkit-filter : hue-rotate(54deg)
+  filter : hue-rotate(300deg);
+  width: 23px !important;
+  height: 23px !important;
+
+}
+.star_color9{
   -webkit-filter : hue-rotate(300deg);
+  filter : hue-rotate(300deg);
+  width: 20px !important;
+  height: 20px !important;
+}
+.star_color10{
+  -webkit-filter : hue-rotate(54deg)
   filter : hue-rotate(300deg);
   width: 20px !important;
   height: 20px !important;
 
 }
+
 .star_born{
   mix-blend-mode: exclusion;
-  width: 150px;
-  height: 150px;
+  width: 150px !important;
+  height: 150px !important;
   position: absolute;
   left: -52px;
   top: -52px;
