@@ -262,13 +262,17 @@ header .controls_header .screen_control:hover
 header .logo
 {
   position: absolute;
-  top: -100px;
+  top: -180px;
   left: 0;
   right: 0;
   margin: 0 auto;
   display: block;
   width: 130px;
   text-align: center;
+}
+
+#logo_2{
+  width: 200px;
 }
 
 header .social
@@ -880,7 +884,7 @@ header .social a.youtube_header:hover
 }
 .form_name form input.create_conts.explore
 {
-  margin:40px auto;
+  margin:68px auto;
   font-size: 20px;
 }
 
@@ -1056,6 +1060,7 @@ header .social a.youtube_header:hover
   display: block;
 }
 
+
 .constellation_img{
   display:none;
 }
@@ -1070,7 +1075,8 @@ header .social a.youtube_header:hover
   display: block;
   text-align: center;
   opacity: 0;
-  background: url(../assets/bg_constelacion.png) no-repeat center;
+  background: url(../assets/constella1.gif) no-repeat center;
+  /*background: url(../assets/bg_constelacion.png) no-repeat center;*/
   background-size: contain;
 }
 .constelaciones img

@@ -80,7 +80,6 @@ $(document).ready(function() {
       $('.circle_menu_open').css('background', 'url(assets/item_5.png) no-repeat center 0px');
     }
     // animate mini galaxy footer
-
   });
 
   // controls left
@@ -155,7 +154,19 @@ $(document).ready(function() {
     $('.control_down').css('display', 'block').animate({'margin-left': '300'}, 400);
     $('.content_zodiac_sings').css('display', 'block').animate({'margin-left': '400'}, 400);
   });
-
+  //************ Globals Animation ************
+  function down_fn(elemento, delay){
+    elemento.css('opacity', '0');
+    TweenLite.to(elemento, 1, {opacity:1, delay:delay, ease:Power2.easeInOut});
+    TweenLite.from(elemento, 1, {css:{marginTop:-20}, delay:delay, ease:Power2.easeInOut});
+  }
+  down_fn($('#form2 .logo'),1);
+  down_fn($('#form2 p'),2.3);
+  down_fn($('#form2 span'),2.6);
+  down_fn($('#form2 input:eq(0)'),3.1);
+  down_fn($('#form2 input:eq(1)'),3.4);
+  down_fn($('#form2 input:eq(2)'),3.7);
+  down_fn($('#form2 input:eq(3)'),4);
   //************ Stars Animation **************
 
   //Main Toogle functions 
@@ -298,6 +309,11 @@ $(document).ready(function() {
     var centradorY = -Y-(centerY+187);
     TweenLite.to('.stars', 1, {top:Number(centradorY), left:Number(centradorX), ease:Power2.easeInOut, onComplete:fn});
   }
+  function Center_fn_return(object=null, fn=null){
+    top_t = $(".stars").css("top");
+    left_t = $(".stars").css("left");
+    TweenLite.to(".stars", 0.4, {top:String(-Number(Y)+"px"), left:String(-Number(X)+"px"), ease:Power2.easeInOut, onComplete:fn});
+  }
   function Create_fn(){
     TweenLite.to("#fondo_preload", 1, {opacity:0, onComplete:function(){cancelAnimationFrame(intervalBG);$('#fondo_preload').css('display', 'none');}});
     hide_fn($(".constelaciones"));
@@ -310,26 +326,28 @@ $(document).ready(function() {
     var limX = Math.round(width/3);
     var limY = Math.round(height/3);
 
-    X = parseInt($('.stars').css("left"),10);
-    Y = parseInt($('.stars').css("top"),10);
+    //X = parseInt($('.stars').css("left"),10);
+    //Y = parseInt($('.stars').css("top"),10);
 
     $('.coords').css('display', 'block');
 
     function intervalStarFn(){
+
+      if(centerX <= -limX || centerX >= limX || centerY <= -limY || centerY >= limY){
         X = Math.round(Number((posX-width))/100)+X;
         Y = Math.round(Number((posY-height))/100)+Y;
         if(X<=-4000) X=-4000;
         if(X>=4000) X=4000;
         if(Y<=-4000) Y=-4000;
         if(Y>=4000) Y=4000;
-        if(centerX >= -limX || centerX <= limX || centerY >= -limY || centerY <= limY){
-          $(".coords").text(String(X+":"+Y))
-          //TweenLite.to(".stars", 0.3, {top:String(-Number(Y)+"px"), left:String(-Number(X)+"px"), ease:Power2.easeInOut});
-          $('body').css('backgroundPosition', String(Number(-X)+"px "+Number(-Y)+"px"));
-          $('.stars').css('top', String(-Y+"px"));
-          $('.stars').css('left', String(-X+"px"));
-        }
-        intervalStar = requestAnimationFrame(intervalStarFn);
+      }
+      $(".coords").text(String(X+":"+Y))
+      //TweenLite.to(".stars", 0.3, {top:String(-Number(Y)+"px"), left:String(-Number(X)+"px"), ease:Power2.easeInOut});
+      $('body').css('backgroundPosition', String(Number(-X)+"px "+Number(-Y)+"px"));
+      $('.stars').css('top', String(-Y+"px"));
+      $('.stars').css('left', String(-X+"px"));
+
+      intervalStar = requestAnimationFrame(intervalStarFn);
     }
     //no click en el body
     $('.form_name').click(function(event){
@@ -344,7 +362,7 @@ $(document).ready(function() {
           hide_fn($('.form_name'));
           //show_fn($('.name_star'));
           $( ".owner" ).remove();
-          Center_fn(null,Create_fn)
+          Center_fn_return(null,Create_fn)
         });
         cancelAnimationFrame(intervalStar);
        
@@ -398,18 +416,14 @@ $(document).ready(function() {
 
   $('#form2').submit(function(e) {
     e.preventDefault();
-    //alert($(this).validationEngine(('validate')))
-    //$('#explore').click(function() {
-    if ($(this).validationEngine('validate')) {
+    if ($(this).validationEngine('validate', {'showOneMessage' : true})) {
         getConstelacion();
     }
   });
 
   $('#form1').submit(function(e) {
     e.preventDefault();
-    //alert($(this).validationEngine(('validate')))
-    //$('#explore').click(function() {
-    if ($(this).validationEngine('validate')) {
+    if ($(this).validationEngine('validate','showOneMessage')) {
         alert("Creating Star...");
         $('.name_net').text($('#name_input').val());
         hide_fn($(".form_name"));
@@ -419,9 +433,7 @@ $(document).ready(function() {
 
   $('#form_child_today').submit(function(e) {
     e.preventDefault();
-    //alert($(this).validationEngine(('validate')))
-    //$('#explore').click(function() {
-    if ($(this).validationEngine('validate')) {
+    if ($(this).validationEngine('validate','showOneMessage')) {
         getConstelacion();
     }
   });
@@ -446,7 +458,7 @@ $(document).ready(function() {
           for(i= 0;i<allStars.length;++i){
             var posx = allStars[i].position_x % 2000;
             var posy = allStars[i].position_y % 2000;
-            stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;"><img  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>')
+            stars.append('<div class="star" style="left: '+ posx + 'px; top:'+  posy + 'px; display: block; position: absolute;" position_x="'+ posx + '" position_y="'+ posy +'"><img  src="assets/star_u.png" alt=""><p>'+allStars[i].name+'</p></div>')
           }
           loadEventsStars();
         }
@@ -461,6 +473,9 @@ $(document).ready(function() {
       $('.star').mouseleave(function() {
         validCreation = 0;
         $(this).children('p').animate({'opacity': '0'}, 200);
+      });
+      $('.star').click(function() {
+        alert($(this).attr("position_x"))
       });
     }
 
