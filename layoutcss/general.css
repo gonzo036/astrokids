@@ -1645,6 +1645,7 @@ footer .menu_close
   opacity:0;
 }
 
+/******* finales cambios de footer ********************/
 .conten_items
 {
   max-width: 30%;
@@ -1718,6 +1719,10 @@ footer .box_item .content_item.active a
   left: calc(50% - 10px);
 
 }
+
+
+/******* finales cambios de footer ********************/
+
 
 /*
 footer .menu_open {
