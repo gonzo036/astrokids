@@ -343,7 +343,7 @@ header .logo
   right: 0;
   margin: 0 auto;
   display: block;
-  width: 130px;
+  width: 200px;
   text-align: center;
 }
 
@@ -759,6 +759,7 @@ header .social a.youtube_header:hover
   height: 422px;
   top: calc(50% - 220px);
   text-align: center;
+  left: calc(50% - 132.5px);
 }
 .form_name img,
 .form_name img.logo
@@ -1644,6 +1645,81 @@ footer .menu_close
   opacity:0;
 }
 
+.conten_items
+{
+  max-width: 30%;
+  min-width: 576px;
+  height: 60px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: -500%;
+  display: none;
+}
+.conten_items .box_item 
+{
+  width: 100%;
+}
+.circle_menu_open {
+    width: 102px;
+    height: 105px;
+    position: absolute;
+    top: -89px;
+    left: -8.5%;
+    right: 0;
+}
+.conten_items .box_item .content_item
+{
+    width: 24%;
+    height: 70px;
+    float: left;
+    position: relative;
+    background: transparent url("../assets/bg_menu_footer.png") no-repeat scroll 15px 10px;
+    background-size: 82%;
+    margin: -10px 0px 0px 4px;
+}
+.conten_items .box_item .content_item:last-child
+{
+  width: 1px;
+}
+footer .box_item .content_item.active a
+{
+  color: #f8e649;
+}
+.conten_items .box_item .content_item a
+{
+  text-decoration: none;
+  color: #FFF;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 10.5px;
+  position: absolute;
+  bottom: 0px;
+  width: 115px;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  left: -55px;
+  padding: 40px 0px 0px;
+}
+.conten_items .box_item .content_item a:after
+{
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  bottom: 51px;
+  border: 2px solid #0cf7f0;
+  margin: 0 auto;
+  left: calc(50% - 10px);
+
+}
+
+/*
 footer .menu_open {
   display: block;
   position: absolute;
@@ -1778,7 +1854,7 @@ footer .menu_open .circle_menu_open
 footer .menu_open .circle_menu_open img
 {
   width: 100%;
-}
+}*/
 footer .menu_open li.active a
 {
   color: #f8e649;
